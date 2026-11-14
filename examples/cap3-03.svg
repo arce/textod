@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="242" height="328">
+  <g transform="translate(6,6)">
+  <text x="115" y="11.7" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" font-weight="bold" class="c-f-text" fill="#2c3e50">process control block (PCB)</text>
+  <rect x="0" y="21" width="230" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="115" y="42.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">process state</text>
+  <rect x="0" y="55" width="230" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="115" y="76.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">process number</text>
+  <rect x="0" y="89" width="230" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="115" y="110.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">program counter</text>
+  <rect x="0" y="123" width="230" height="64" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="115" y="159.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">registers</text>
+  <rect x="0" y="187" width="230" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="115" y="208.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">memory limits</text>
+  <rect x="0" y="221" width="230" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="115" y="242.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">list of open files</text>
+  <rect x="0" y="255" width="230" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="115" y="276.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">...</text>
+</g>
+  <text x="2" y="320.7" font-family="Georgia,&apos;Palatino Linotype&apos;,&apos;Times New Roman&apos;,serif" font-size="12" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50">Process control block (PCB).</text>
+</svg>

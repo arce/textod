@@ -1,0 +1,19 @@
+import styles
+style local
+  text size=14
+diagram fig2-10 (
+    style=silberschatz,local size=15
+    caption="Figure 2.10  FreeBSD running multiple programs."
+)
+  row gap=10 align=start
+    col gap=0 align=start
+      text "high\nmemory"
+      spacer h=215
+      text "low\nmemory"
+    col gap=0 w=150
+      box "kernel" light h=50
+      box "free memory" white h=36
+      box "process C" silver h=70
+      box "interpreter" gray h=34
+      box "process B" silver h=70
+      box "process D" silver h=36

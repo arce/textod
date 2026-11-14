@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="681.28" height="184">
+  <g transform="translate(6,6)">
+  <rect x="0" y="0" width="239.65" height="60" rx="6" ry="6" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="119.82" y="35.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Una caja con muchos atributos</text>
+  <rect x="0" y="80" width="239.65" height="60" rx="6" ry="6" class="c-f-white c-s-text" fill="#ffffff" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="119.82" y="115.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Otra caja</text>
+  <path d="M 119.82 60 L 119.82 70.65" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="119.82,80 114.76,69 124.88,69" class="c-f-text" fill="#2c3e50" stroke="none"/>
+</g>
+  <text x="2" y="175.6" font-family="Georgia,&apos;Palatino Linotype&apos;,&apos;Times New Roman&apos;,serif" font-size="16" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50">Un atributo largo se parte con &amp; y la cabecera con ( ). La sangría dentro de los paréntesis no importa.</text>
+</svg>

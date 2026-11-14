@@ -1,0 +1,15 @@
+import styles
+diagram fig14-5 frame (
+    style=oreilly size=11
+    caption="Figure 14-5. Distributing events to topic partitions using " &
+        "hashing"
+)
+  row gap=70
+    box pub "Publishers" w=110 h=40
+    group broker "Kafka broker"
+      box p0 "MissionRidgeTopic-0"
+      box p1 "MissionRidgeTopic-1"
+      box p2 "MissionRidgeTopic-2"
+  pub.right -> p0 sw=3
+  pub.right -> p1 sw=3
+  pub.right -> p2 sw=3 label="Hash(liftID)" side=below

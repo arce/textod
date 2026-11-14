@@ -1,0 +1,11 @@
+import styles
+diagram layout-implicito (
+    gap=36
+    caption="Sin col ni row: los elementos se apilan en columna y el " &
+        "tamaño sale del texto."
+)
+  box t "Sistema de archivos"
+  box a "Colección de archivos"
+  box b "Estructura de directorios"
+  t -> a
+  t -> b

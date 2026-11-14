@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="350.69" height="198.75">
+  <rect x="0.5" y="0.5" width="349.69" height="172" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="1"/>
+  <g transform="translate(6,6)">
+  <rect x="0" y="60.5" width="110" height="40" rx="8" ry="8" class="c-f-white c-s-text" fill="#ffffff" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="55" y="84.35" font-family="Helvetica,Arial,sans-serif" font-size="11" text-anchor="middle" class="c-f-text" fill="#2c3e50">Publishers</text>
+  <rect x="180" y="0" width="158.69" height="161" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="259.34" y="24.73" font-family="Helvetica,Arial,sans-serif" font-size="11" text-anchor="middle" font-weight="bold" class="c-f-text" fill="#2c3e50">Kafka broker</text>
+  <rect x="194" y="37.75" width="130.69" height="29.75" rx="8" ry="8" class="c-f-white c-s-text" fill="#ffffff" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="259.34" y="56.48" font-family="Helvetica,Arial,sans-serif" font-size="11" text-anchor="middle" class="c-f-text" fill="#2c3e50">MissionRidgeTopic-0</text>
+  <rect x="194" y="77.5" width="130.69" height="29.75" rx="8" ry="8" class="c-f-white c-s-text" fill="#ffffff" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="259.34" y="96.22" font-family="Helvetica,Arial,sans-serif" font-size="11" text-anchor="middle" class="c-f-text" fill="#2c3e50">MissionRidgeTopic-1</text>
+  <rect x="194" y="117.25" width="130.69" height="29.75" rx="8" ry="8" class="c-f-white c-s-text" fill="#ffffff" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="259.34" y="135.97" font-family="Helvetica,Arial,sans-serif" font-size="11" text-anchor="middle" class="c-f-text" fill="#2c3e50">MissionRidgeTopic-2</text>
+  <path d="M 110 80.5 L 185.13 55.57" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="3"/>
+  <polygon points="194,52.62 185.15,60.89 181.97,51.29" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 110 80.5 L 184.74 91.07" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="3"/>
+  <polygon points="194,92.38 182.4,95.85 183.82,85.83" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 110 80.5 L 186.03 127.23" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="3"/>
+  <polygon points="194,132.12 181.98,130.68 187.28,122.05" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="152" y="124.04" font-family="Helvetica,Arial,sans-serif" font-size="11" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">Hash(liftID)</text>
+</g>
+  <text x="2" y="191.72" font-family="Georgia,&apos;Palatino Linotype&apos;,&apos;Times New Roman&apos;,serif" font-size="11" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50">Figure 14-5. Distributing events to topic partitions using hashing</text>
+</svg>

@@ -1,0 +1,34 @@
+/* Tema "print": paleta en grises para imprimir (blanco y negro). Redefine solo las variables --c-*;
+   se puede combinar con otro tema (theme=balsamiq,print: el último gana).
+   Límite: el color del texto sobre un relleno se elige al dibujar con la paleta en color. */
+.theme-print {
+  --c-text: #000000;
+  --c-muted: #444444;
+  --c-primary: #000000;
+  --c-success: #333333;
+  --c-warning: #555555;
+  --c-primary-soft: #eeeeee;
+  --c-success-soft: #f4f4f4;
+  --c-warning-soft: #e4e4e4;
+  --c-border-soft: #cccccc;
+  --c-placeholder: #d9d9d9;
+  --c-bar: #ededed;
+  --c-border: #777777;
+  --c-primary-border: #555555;
+  --c-surface: #ffffff;
+  --c-canvas: #ffffff;
+  --c-light: #eeeeee;
+  --c-blue: #eeeeee;
+  --c-dark: #333333;
+  --c-white: #ffffff;
+  --c-silver: #e6e6e6;
+  --c-gray: #dddddd;
+  --c-green: #e4e4e4;
+  --c-orange: #d9d9d9;
+  --c-yellow: #f0f0f0;
+  --c-red: #cccccc;
+  --c-accent: #555555;
+  --c-callout: #f4f4f4;
+  --c-callout-border: #777777;
+  --c-callout-ink: #000000;
+}

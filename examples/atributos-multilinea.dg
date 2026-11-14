@@ -1,0 +1,12 @@
+import styles
+diagram atributos-multilinea (
+    caption="Un atributo largo se parte con & y la cabecera con ( )." &
+        " La sangría dentro de los paréntesis no importa."
+    gap=20
+)
+  box id=a "Una caja con muchos atributos" (
+      light w=220 h=60   # los comentarios se permiten dentro del grupo
+      pad=10
+  )
+  box id=b "Otra caja" white w=220 h=60
+  a -> b
