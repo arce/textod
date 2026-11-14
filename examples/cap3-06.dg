@@ -1,6 +1,6 @@
-import silberschatz
+import boxed
 diagram cap3-06 (
-    style=silberschatz size=11
+    style=boxed size=11
     caption="Addition of medium-term scheduling to the queueing diagram."
     w=540 h=230
 )

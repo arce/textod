@@ -1,5 +1,5 @@
-import oreilly
-diagram architecture style=oreilly
+import rounded
+diagram architecture style=rounded
   row gap=84 align=center
     col gap=26
       box web "Web app" light w=110

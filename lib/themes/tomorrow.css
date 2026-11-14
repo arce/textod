@@ -1,0 +1,42 @@
+/* Theme "tomorrow": Tomorrow (Chris Kempson): light gray paper with muted primary colors.
+   Redefines the --c-* palette and paints the background of the figure (--c-canvas).
+   The color of a text over a fill is chosen when drawing, with the default palette: the strong colors
+   (primary, success, dark, text, muted) get the "white" ink, the others the "text" ink; that is why
+   --c-white is the light box color and the strong colors are deep. It can be combined with another theme (theme=a,b: the last one wins). */
+.theme-tomorrow {
+  --c-text: #4d4d4c;
+  --c-muted: #6e706c;
+  --c-primary: #4271ae;
+  --c-success: #677f00;
+  --c-warning: #b06116;
+  --c-primary-soft: #d5dfed;
+  --c-success-soft: #dfe5c6;
+  --c-warning-soft: #fde4cd;
+  --c-border-soft: #cfcfce;
+  --c-placeholder: #d8d8d8;
+  --c-bar: #ededed;
+  --c-border: #c8c8c8;
+  --c-primary-border: #8eaace;
+  --c-surface: #ffffff;
+  --c-canvas: #efefef;
+  --c-light: #cad7e8;
+  --c-blue: #cad7e8;
+  --c-dark: #4271ae;
+  --c-white: #ffffff;
+  --c-silver: #e6e6e6;
+  --c-gray: #dbdbdb;
+  --c-green: #d7dfb8;
+  --c-orange: #fcd9b7;
+  --c-yellow: #f9ebb8;
+  --c-red: #edbabb;
+  --c-accent: #b06116;
+  --c-callout: #fcf6e0;
+  --c-callout-border: #f3d773;
+  --c-callout-ink: #695200;
+  --c-shadow-color: #acacac;
+  background: var(--c-canvas);
+}
+/* warning and accent are strong colors, but their default is a light one: their text takes the "white" ink */
+.theme-tomorrow rect.c-f-warning + text, .theme-tomorrow rect.c-f-accent + text { fill: var(--c-white); }
+/* the halo of the labels on connectors takes the color of the background */
+.theme-tomorrow text[paint-order] { stroke: var(--c-canvas); }

@@ -1,5 +1,5 @@
-import oreilly
-diagram hello style=oreilly
+import rounded
+diagram hello style=rounded
   row gap=70
     box client "Client" light
     box server "Server" blue

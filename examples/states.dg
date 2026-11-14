@@ -1,5 +1,5 @@
-import oreilly
-diagram states style=oreilly
+import rounded
+diagram states style=rounded
   col gap=60 align=start
     row gap=100
       box new "New" light w=80

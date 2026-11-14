@@ -1,0 +1,78 @@
+import rounded
+diagram github-light style=rounded theme=github-light caption="theme=github-light"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram one-light style=rounded theme=one-light caption="theme=one-light"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram gruvbox-light style=rounded theme=gruvbox-light caption="theme=gruvbox-light"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram catppuccin-latte style=rounded theme=catppuccin-latte caption="theme=catppuccin-latte"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram tomorrow style=rounded theme=tomorrow caption="theme=tomorrow"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram ayu-light style=rounded theme=ayu-light caption="theme=ayu-light"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram nord-light style=rounded theme=nord-light caption="theme=nord-light"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram solarized-light style=rounded theme=solarized-light caption="theme=solarized-light"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram monokai style=rounded theme=monokai caption="theme=monokai"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram solarized-dark style=rounded theme=solarized-dark caption="theme=solarized-dark"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram zenburn style=rounded theme=zenburn caption="theme=zenburn"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c

@@ -13,7 +13,7 @@ The language it reads is described in [docs/language.md](docs/language.md); the 
 - Elements: `box text spacer shape label rect row col grid layer canvas group line arrow callout ellipse path poly set`, plus `style` and `diagram`.
 - Layout (rows, columns, grids, absolute `at=x,y`), sizes, fills, strokes, dashes, captions.
 - Connectors: `a -> b`, `a.bottom -> b.top elbow`, chains, labels, `both`, `dash`, callouts.
-- Styles (`style=`: shape and stroke defaults, one `.dg` file per style: `import silberschatz`) and themes (`theme=` or `-T`: colors and fonts, CSS).
+- Styles (`style=`: shape and stroke defaults, one `.dg` file per style: `import boxed`) and themes (`theme=` or `-T`: colors, CSS).
 
 ## Example
 

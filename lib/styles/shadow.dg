@@ -1,0 +1,4 @@
+# After FLTK's FL_SHADOW_BOX: a square box with a thin outline and a hard shadow.
+style shadow
+  box radius=0 sw=1.3 padx=10 pady=5 shadow=3
+  arrow sw=1.5

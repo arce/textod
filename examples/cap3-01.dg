@@ -1,5 +1,5 @@
-import silberschatz
-diagram cap3-01 style=silberschatz size=12 caption="Process in memory."
+import boxed
+diagram cap3-01 style=boxed size=12 caption="Process in memory."
   row gap=10 align=start
     col gap=0 align=start
       text "max"

@@ -1,0 +1,42 @@
+/* Theme "github-light": GitHub Light: white paper with the blue, green and red of github.com.
+   Redefines the --c-* palette and paints the background of the figure (--c-canvas).
+   The color of a text over a fill is chosen when drawing, with the default palette: the strong colors
+   (primary, success, dark, text, muted) get the "white" ink, the others the "text" ink; that is why
+   --c-white is the light box color and the strong colors are deep. It can be combined with another theme (theme=a,b: the last one wins). */
+.theme-github-light {
+  --c-text: #24292f;
+  --c-muted: #57606a;
+  --c-primary: #0969da;
+  --c-success: #1a7f37;
+  --c-warning: #bc4c00;
+  --c-primary-soft: #c8ddf7;
+  --c-success-soft: #cce2d2;
+  --c-warning-soft: #f0d7c6;
+  --c-border-soft: #cccfd1;
+  --c-placeholder: #cfd0d1;
+  --c-bar: #e9eaea;
+  --c-border: #d0d7de;
+  --c-primary-border: #6ba5e9;
+  --c-surface: #ffffff;
+  --c-canvas: #f6f8fa;
+  --c-light: #bad5f5;
+  --c-blue: #bad5f5;
+  --c-dark: #0969da;
+  --c-white: #ffffff;
+  --c-silver: #e0e1e2;
+  --c-gray: #d3d4d5;
+  --c-green: #bfdbc7;
+  --c-orange: #eac6ad;
+  --c-yellow: #edddb8;
+  --c-red: #f0b8bc;
+  --c-accent: #bc4c00;
+  --c-callout: #f7f1e0;
+  --c-callout-border: #dcbd73;
+  --c-callout-ink: #563d00;
+  --c-shadow-color: #b1b3b4;
+  background: var(--c-canvas);
+}
+/* warning and accent are strong colors, but their default is a light one: their text takes the "white" ink */
+.theme-github-light rect.c-f-warning + text, .theme-github-light rect.c-f-accent + text { fill: var(--c-white); }
+/* the halo of the labels on connectors takes the color of the background */
+.theme-github-light text[paint-order] { stroke: var(--c-canvas); }

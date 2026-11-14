@@ -1,5 +1,5 @@
-import oreilly
-diagram wireframe style=oreilly
+import rounded
+diagram wireframe style=rounded
   col gap=10
     box top "Top bar" bar w=460 h=36
     row gap=10

@@ -1,6 +1,6 @@
-import silberschatz
+import boxed
 diagram cap3-03 (
-    style=silberschatz size=12 caption="Process control block (PCB)."
+    style=boxed size=12 caption="Process control block (PCB)."
 )
   col gap=6 align=center
     text "process control block (PCB)" bold

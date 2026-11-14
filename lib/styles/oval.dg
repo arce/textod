@@ -1,0 +1,4 @@
+# After FLTK's FL_OVAL_BOX: the box becomes an ellipse (the corner radius is larger than the box).
+style oval
+  box radius=999 sw=1.3 padx=26 pady=12
+  arrow sw=1.5

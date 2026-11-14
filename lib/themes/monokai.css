@@ -1,0 +1,42 @@
+/* Theme "monokai": Monokai: dark olive background with pink, orange, yellow, green and cyan.
+   Redefines the --c-* palette and paints the background of the figure (--c-canvas).
+   The color of a text over a fill is chosen when drawing, with the default palette: the strong colors
+   (primary, success, dark, text, muted) get the "white" ink, the others the "text" ink; that is why
+   --c-white is the dark box color and the strong colors are bright. It can be combined with another theme (theme=a,b: the last one wins). */
+.theme-monokai {
+  --c-text: #f8f8f2;
+  --c-muted: #aca78f;
+  --c-primary: #66d9ef;
+  --c-success: #a6e22e;
+  --c-warning: #fd971f;
+  --c-primary-soft: #465b56;
+  --c-success-soft: #525d31;
+  --c-warning-soft: #634e2e;
+  --c-border-soft: #51524c;
+  --c-placeholder: #67665c;
+  --c-bar: #515045;
+  --c-border: #75715e;
+  --c-primary-border: #569ba3;
+  --c-surface: #3e3d32;
+  --c-canvas: #272822;
+  --c-light: #48625f;
+  --c-blue: #48625f;
+  --c-dark: #66d9ef;
+  --c-white: #3e3d32;
+  --c-silver: #58574d;
+  --c-gray: #636258;
+  --c-green: #576531;
+  --c-orange: #73562d;
+  --c-yellow: #666342;
+  --c-red: #723744;
+  --c-accent: #fd971f;
+  --c-callout: #52503a;
+  --c-callout-border: #9a9456;
+  --c-callout-ink: #eee8ad;
+  --c-shadow-color: #151613;
+  background: var(--c-canvas);
+}
+/* warning and accent are strong colors, but their default is a light one: their text takes the "white" ink */
+.theme-monokai rect.c-f-warning + text, .theme-monokai rect.c-f-accent + text { fill: var(--c-white); }
+/* the halo of the labels on connectors takes the color of the background */
+.theme-monokai text[paint-order] { stroke: var(--c-canvas); }

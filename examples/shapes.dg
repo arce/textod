@@ -1,5 +1,5 @@
-import oreilly
-diagram shapes style=oreilly
+import rounded
+diagram shapes style=rounded
   row gap=80 align=center
     box app "App" light w=100 h=52
     shape db "Orders" w=110 h=84 fill=yellow

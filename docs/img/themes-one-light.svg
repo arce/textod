@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="288.93" height="89" class="theme-one-light">
+  <style><![CDATA[
+svg { font-family: var(--c-font, Helvetica, Arial, sans-serif); }
+.c-f-text { fill: var(--c-text, #2c3e50); }
+.c-s-text { stroke: var(--c-text, #2c3e50); }
+.c-f-muted { fill: var(--c-muted, #777777); }
+.c-s-muted { stroke: var(--c-muted, #777777); }
+.c-f-primary { fill: var(--c-primary, #2c81ba); }
+.c-s-primary { stroke: var(--c-primary, #2c81ba); }
+.c-f-success { fill: var(--c-success, #3eaf7c); }
+.c-s-success { stroke: var(--c-success, #3eaf7c); }
+.c-f-warning { fill: var(--c-warning, #e67e22); }
+.c-s-warning { stroke: var(--c-warning, #e67e22); }
+.c-f-primary-soft { fill: var(--c-primary-soft, #eaf3fa); }
+.c-s-primary-soft { stroke: var(--c-primary-soft, #eaf3fa); }
+.c-f-success-soft { fill: var(--c-success-soft, #eef6f2); }
+.c-s-success-soft { stroke: var(--c-success-soft, #eef6f2); }
+.c-f-warning-soft { fill: var(--c-warning-soft, #fdf3ea); }
+.c-s-warning-soft { stroke: var(--c-warning-soft, #fdf3ea); }
+.c-f-border-soft { fill: var(--c-border-soft, #dcdcdc); }
+.c-s-border-soft { stroke: var(--c-border-soft, #dcdcdc); }
+.c-f-placeholder { fill: var(--c-placeholder, #d5dbe1); }
+.c-s-placeholder { stroke: var(--c-placeholder, #d5dbe1); }
+.c-f-bar { fill: var(--c-bar, #eef1f4); }
+.c-s-bar { stroke: var(--c-bar, #eef1f4); }
+.c-f-border { fill: var(--c-border, #b8c2cc); }
+.c-s-border { stroke: var(--c-border, #b8c2cc); }
+.c-f-primary-border { fill: var(--c-primary-border, #9cc3de); }
+.c-s-primary-border { stroke: var(--c-primary-border, #9cc3de); }
+.c-f-surface { fill: var(--c-surface, #ffffff); }
+.c-s-surface { stroke: var(--c-surface, #ffffff); }
+.c-f-canvas { fill: var(--c-canvas, #fafbfc); }
+.c-s-canvas { stroke: var(--c-canvas, #fafbfc); }
+.c-f-light { fill: var(--c-light, #dbe8f5); }
+.c-s-light { stroke: var(--c-light, #dbe8f5); }
+.c-f-blue { fill: var(--c-blue, #dbe8f5); }
+.c-s-blue { stroke: var(--c-blue, #dbe8f5); }
+.c-f-dark { fill: var(--c-dark, #2c81ba); }
+.c-s-dark { stroke: var(--c-dark, #2c81ba); }
+.c-f-white { fill: var(--c-white, #ffffff); }
+.c-s-white { stroke: var(--c-white, #ffffff); }
+.c-f-silver { fill: var(--c-silver, #e8ecef); }
+.c-s-silver { stroke: var(--c-silver, #e8ecef); }
+.c-f-gray { fill: var(--c-gray, #e6e9ec); }
+.c-s-gray { stroke: var(--c-gray, #e6e9ec); }
+.c-f-green { fill: var(--c-green, #d2ecd0); }
+.c-s-green { stroke: var(--c-green, #d2ecd0); }
+.c-f-orange { fill: var(--c-orange, #f8d9b4); }
+.c-s-orange { stroke: var(--c-orange, #f8d9b4); }
+.c-f-yellow { fill: var(--c-yellow, #fbeeb0); }
+.c-s-yellow { stroke: var(--c-yellow, #fbeeb0); }
+.c-f-red { fill: var(--c-red, #f3b7b0); }
+.c-s-red { stroke: var(--c-red, #f3b7b0); }
+.c-f-accent { fill: var(--c-accent, #e67e22); }
+.c-s-accent { stroke: var(--c-accent, #e67e22); }
+.c-f-callout { fill: var(--c-callout, #fefcf3); }
+.c-s-callout { stroke: var(--c-callout, #fefcf3); }
+.c-f-callout-border { fill: var(--c-callout-border, #b8a26b); }
+.c-s-callout-border { stroke: var(--c-callout-border, #b8a26b); }
+.c-f-callout-ink { fill: var(--c-callout-ink, #3d3526); }
+.c-s-callout-ink { stroke: var(--c-callout-ink, #3d3526); }
+.c-f-shadow-color { fill: var(--c-shadow-color, #9aa5b1); }
+.c-s-shadow-color { stroke: var(--c-shadow-color, #9aa5b1); }
+
+/* Theme "one-light": One Light (Atom): off-white background with soft blue, green and red.
+   Redefines the --c-* palette and paints the background of the figure (--c-canvas).
+   The color of a text over a fill is chosen when drawing, with the default palette: the strong colors
+   (primary, success, dark, text, muted) get the "white" ink, the others the "text" ink; that is why
+   --c-white is the light box color and the strong colors are deep. It can be combined with another theme (theme=a,b: the last one wins). */
+.theme-one-light {
+  --c-text: #383a42;
+  --c-muted: #696c77;
+  --c-primary: #3c71e3;
+  --c-success: #428441;
+  --c-warning: #b26224;
+  --c-primary-soft: #d4e1fc;
+  --c-success-soft: #d8ead8;
+  --c-warning-soft: #f5e0cf;
+  --c-border-soft: #d3d4d5;
+  --c-placeholder: #d3d4d5;
+  --c-bar: #ebebec;
+  --c-border: #c8c9cc;
+  --c-primary-border: #8caef7;
+  --c-surface: #ffffff;
+  --c-canvas: #fafafa;
+  --c-light: #cad9fb;
+  --c-blue: #cad9fb;
+  --c-dark: #3c71e3;
+  --c-white: #ffffff;
+  --c-silver: #e3e3e5;
+  --c-gray: #d7d8d9;
+  --c-green: #cee5ce;
+  --c-orange: #f0d2bb;
+  --c-yellow: #eeddb8;
+  --c-red: #f6c9c5;
+  --c-accent: #b26224;
+  --c-callout: #f8f0e1;
+  --c-callout-border: #ddbb73;
+  --c-callout-ink: #573b00;
+  --c-shadow-color: #b4b4b4;
+  background: var(--c-canvas);
+}
+/* warning and accent are strong colors, but their default is a light one: their text takes the "white" ink */
+.theme-one-light rect.c-f-warning + text, .theme-one-light rect.c-f-accent + text { fill: var(--c-white); }
+/* the halo of the labels on connectors takes the color of the background */
+.theme-one-light text[paint-order] { stroke: var(--c-canvas); }
+
+  ]]></style>
+  <g transform="translate(6,15)">
+  <rect x="0" y="0" width="68.9" height="36" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="34.45" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Client</text>
+  <rect x="112.9" y="0" width="53.79" height="36" rx="8" ry="8" class="c-f-primary c-s-text" fill="#2c81ba" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="139.79" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-white" fill="#ffffff">API</text>
+  <rect x="210.69" y="0" width="66.24" height="36" rx="8" ry="8" class="c-f-yellow c-s-text" fill="#fbeeb0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="243.81" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Store</text>
+  <path d="M 68.9 18 L 103.55 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="112.9,18 101.9,23.06 101.9,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="90.9" y="6.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">HTTP</text>
+  <path d="M 166.69 18 L 201.34 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="210.69,18 199.69,23.06 199.69,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+</g>
+  <text x="2" y="80.6" font-family="Georgia,&apos;Palatino Linotype&apos;,&apos;Times New Roman&apos;,serif" font-size="16" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50">theme=one-light</text>
+</svg>

@@ -1,24 +1,40 @@
-import silberschatz
-import oreilly
-diagram silberschatz style=silberschatz caption="style=silberschatz"
+import boxed
+import rounded
+import flat
+import shadow
+import rshadow
+import oval
+diagram boxed style=boxed caption="style=boxed"
   row gap=44
     box a "Client" light
     box b "API" green
     box c "Store" yellow
   a -> b -> c
-diagram oreilly style=oreilly caption="style=oreilly"
+diagram rounded style=rounded caption="style=rounded"
   row gap=44
     box a "Client" light
     box b "API" green
     box c "Store" yellow
   a -> b -> c
-diagram balsamiq style=oreilly theme=balsamiq caption="theme=balsamiq"
+diagram flat style=flat caption="style=flat"
   row gap=44
     box a "Client" light
     box b "API" green
     box c "Store" yellow
   a -> b -> c
-diagram print style=oreilly theme=print caption="theme=print"
+diagram shadow style=shadow caption="style=shadow"
+  row gap=44
+    box a "Client" light
+    box b "API" green
+    box c "Store" yellow
+  a -> b -> c
+diagram rshadow style=rshadow caption="style=rshadow"
+  row gap=44
+    box a "Client" light
+    box b "API" green
+    box c "Store" yellow
+  a -> b -> c
+diagram oval style=oval caption="style=oval"
   row gap=44
     box a "Client" light
     box b "API" green

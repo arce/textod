@@ -1,0 +1,4 @@
+# Square boxes, thin lines, italic arrows (the look of a textbook figure).
+style boxed
+  box radius=0 sw=1.3 padx=8 pady=4
+  arrow sw=1.3 italic

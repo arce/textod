@@ -1,5 +1,5 @@
-import oreilly
-diagram pipeline style=oreilly
+import rounded
+diagram pipeline style=rounded
   row gap=44
     box src "Source" light
     box build "Build" green

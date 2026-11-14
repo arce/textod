@@ -1,0 +1,42 @@
+/* Theme "ayu-light": Ayu Light: bright, almost white background with vivid accents.
+   Redefines the --c-* palette and paints the background of the figure (--c-canvas).
+   The color of a text over a fill is chosen when drawing, with the default palette: the strong colors
+   (primary, success, dark, text, muted) get the "white" ink, the others the "text" ink; that is why
+   --c-white is the light box color and the strong colors are deep. It can be combined with another theme (theme=a,b: the last one wins). */
+.theme-ayu-light {
+  --c-text: #5c6166;
+  --c-muted: #73767b;
+  --c-primary: #2c7bb3;
+  --c-success: #608100;
+  --c-warning: #af632b;
+  --c-primary-soft: #d3e9f9;
+  --c-success-soft: #e4eec6;
+  --c-warning-soft: #fee5d4;
+  --c-border-soft: #dadbdc;
+  --c-placeholder: #dbdcdd;
+  --c-bar: #efeff0;
+  --c-border: #cfd1d3;
+  --c-primary-border: #88c5f0;
+  --c-surface: #ffffff;
+  --c-canvas: #fafafa;
+  --c-light: #c8e4f8;
+  --c-blue: #c8e4f8;
+  --c-dark: #2c7bb3;
+  --c-white: #ffffff;
+  --c-silver: #e8e9ea;
+  --c-gray: #dedfe0;
+  --c-green: #ddeab8;
+  --c-orange: #fddbc1;
+  --c-yellow: #fbe8cc;
+  --c-red: #fad2d2;
+  --c-accent: #af632b;
+  --c-callout: #fdf5e9;
+  --c-callout-border: #f8d29b;
+  --c-callout-ink: #6d4e21;
+  --c-shadow-color: #b4b4b4;
+  background: var(--c-canvas);
+}
+/* warning and accent are strong colors, but their default is a light one: their text takes the "white" ink */
+.theme-ayu-light rect.c-f-warning + text, .theme-ayu-light rect.c-f-accent + text { fill: var(--c-white); }
+/* the halo of the labels on connectors takes the color of the background */
+.theme-ayu-light text[paint-order] { stroke: var(--c-canvas); }

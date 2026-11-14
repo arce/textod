@@ -1,5 +1,5 @@
-import silberschatz
-diagram cap3-02 style=silberschatz size=12 caption="Process states." w=520 h=290
+import boxed
+diagram cap3-02 style=boxed size=12 caption="Process states." w=520 h=290
   col gap=0 align=start
     row gap=350 align=start
       box nw "new" light w=70 h=34

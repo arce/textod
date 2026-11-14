@@ -144,6 +144,8 @@ inline void shape(ShapeContainer& o, const Item& it) {
 
 inline void box(ShapeContainer& o, const Item& it) {
   std::string fill = it.fillName("white");
+  double sh = it.num("shadow", 0);
+  if (sh > 0) paint(o.rect(it.x + sh, it.y + sh, it.w, it.h, it.num("radius", 6)), "shadow-color", "none", 0);
   paint(o.rect(it.x, it.y, it.w, it.h, it.num("radius", 6)), fill, it.attr("stroke", "text"), it.num("sw", 1.6), it.attr("dash"));
   label(o, it, it.text, it.x + it.w / 2, it.y + it.h / 2, face(it, "middle", ink(fill)));
 }

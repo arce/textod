@@ -1,0 +1,4 @@
+# After FLTK's FL_FLAT_BOX: solid blocks of color with no outline (give the boxes a color).
+style flat
+  box radius=0 sw=0 padx=12 pady=6
+  arrow sw=1.5

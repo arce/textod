@@ -1,0 +1,42 @@
+/* Theme "solarized-light": Solarized Light (Ethan Schoonover): cream paper, the same accents as the dark one.
+   Redefines the --c-* palette and paints the background of the figure (--c-canvas).
+   The color of a text over a fill is chosen when drawing, with the default palette: the strong colors
+   (primary, success, dark, text, muted) get the "white" ink, the others the "text" ink; that is why
+   --c-white is the light box color and the strong colors are deep. It can be combined with another theme (theme=a,b: the last one wins). */
+.theme-solarized-light {
+  --c-text: #073642;
+  --c-muted: #667375;
+  --c-primary: #2076b2;
+  --c-success: #687700;
+  --c-warning: #c34815;
+  --c-primary-soft: #cddedf;
+  --c-success-soft: #e2e1b0;
+  --c-warning-soft: #f2d0b5;
+  --c-border-soft: #c0c4b8;
+  --c-placeholder: #c7ccc0;
+  --c-bar: #e4e3d3;
+  --c-border: #93a1a1;
+  --c-primary-border: #7cb6d9;
+  --c-surface: #fdf6e3;
+  --c-canvas: #eee8d5;
+  --c-light: #c1d8de;
+  --c-blue: #c1d8de;
+  --c-dark: #2076b2;
+  --c-white: #fdf6e3;
+  --c-silver: #dbdbcc;
+  --c-gray: #ccd0c3;
+  --c-green: #dbdca3;
+  --c-orange: #edbfa1;
+  --c-yellow: #e9d7a3;
+  --c-red: #f2b7a9;
+  --c-accent: #c34815;
+  --c-callout: #f4e9c8;
+  --c-callout-border: #d5ba66;
+  --c-callout-ink: #513e00;
+  --c-shadow-color: #aba799;
+  background: var(--c-canvas);
+}
+/* warning and accent are strong colors, but their default is a light one: their text takes the "white" ink */
+.theme-solarized-light rect.c-f-warning + text, .theme-solarized-light rect.c-f-accent + text { fill: var(--c-white); }
+/* the halo of the labels on connectors takes the color of the background */
+.theme-solarized-light text[paint-order] { stroke: var(--c-canvas); }

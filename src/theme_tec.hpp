@@ -39,6 +39,7 @@ static const Entry PALETTE[] = {
   {"callout", "#fefcf3"},
   {"callout-border", "#b8a26b"},
   {"callout-ink", "#3d3526"},
+  {"shadow-color", "#9aa5b1"},
 };
 
 inline const Entry* find(const std::string& name) {

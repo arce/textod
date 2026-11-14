@@ -1,6 +1,6 @@
-import silberschatz
+import boxed
 diagram cap3-08 (
-    style=silberschatz size=11
+    style=boxed size=11
     caption="Process creation with fork(), exec(), exit() and wait()." w=560
     h=210
 )

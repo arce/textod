@@ -23,7 +23,7 @@ inline const std::set<std::string> ATTRS_CORE{
 inline const std::set<std::string> ATTRS_SHAPE{"r", "cx", "cy", "rx", "ry", "x1", "y1", "x2", "y2", "d", "pts", "tx", "ty"};
 inline const std::set<std::string> ATTRS_EXT{
   "alpha", "rotate", "border", "capsize", "captionpos", "captionstyle", "rspan", "layout", "label", "side", "margin", "linecap", "join",
-  "theme", "gapx", "gapy", "base", "weights", "metric", "valign", "around", "padtop", "tip", "tail", "flex"};
+  "theme", "gapx", "gapy", "base", "weights", "metric", "valign", "around", "padtop", "tip", "tail", "flex", "shadow"};
 inline const std::set<std::string> ATTRS = [] {
   std::set<std::string> s = ATTRS_CORE;
   s.insert(ATTRS_SHAPE.begin(), ATTRS_SHAPE.end());

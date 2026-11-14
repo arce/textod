@@ -5,8 +5,8 @@
 ## A file
 
 ```
-import silberschatz
-diagram hello style=silberschatz caption="Two boxes"
+import boxed
+diagram hello style=boxed caption="Two boxes"
   row gap=60
     box client "Client" light
     box server "Server" blue
@@ -15,7 +15,7 @@ diagram hello style=silberschatz caption="Two boxes"
 
 - Indentation gives the structure. `import` goes first; then one or more `diagram` blocks, each producing one SVG.
 - `diagram ID [options]`: the id may be omitted (the file name is used). Options include `style=`, `size=`, `caption=`, `theme=`, `frame`.
-- `import NAME` accepts libraries that contain only `style` blocks (`import silberschatz`). A `style NAME` block sets defaults per element (`box radius=8 sw=1.6`) and is applied with `style=NAME`.
+- `import NAME` accepts libraries that contain only `style` blocks (`import boxed`). A `style NAME` block sets defaults per element (`box radius=8 sw=1.6`) and is applied with `style=NAME`.
 
 ## Elements
 
@@ -35,6 +35,7 @@ diagram hello style=silberschatz caption="Two boxes"
 | `at`, `alignx`, `aligny` | absolute position and alignment inside a `canvas` |
 | `col`, `row`, `span`, `rspan` | cell of a `grid` |
 | `fill`, `stroke`, `sw`, `dash`, `radius`, `alpha` | painting |
+| `shadow=N` | a hard shadow, N pixels to the lower right, behind a `box` (its color is `shadow-color` in the palette); leave room for it with `margin` if N is larger than 6 |
 | `size`, `color`, `bold`, `italic`, `mono`, `rotate` | text |
 | `caption`, `title` | text under or over a figure |
 | `flex`, `flex=N` | a child of a `row` or `col` shares the free space of the main axis in proportion to N |
@@ -58,9 +59,12 @@ Options: `label`, `side`, `sw`, `color`, `dash`, `elbow`, `curve`, `both`, `full
 
 ## Styles and themes
 
-They are different things and can be combined (`style=silberschatz theme=print`).
+They are different things and can be combined (`style=boxed theme=solarized-light`).
 
-- A **style** is shape and stroke: defaults per element (radius, stroke width, padding, italic arrows). It is a `.dg` library with `style` blocks, one per file, and the file name is the style name: `import oreilly` then `style=oreilly`. Included: `silberschatz` (square boxes, thin lines, italic arrows) and `oreilly` (rounded boxes, thick arrows).
-- A **theme** is colors and fonts: a CSS file that redefines the `--c-*` palette. `theme=NAME` (or `-T NAME` on the command line); several can be combined (`theme=balsamiq,print`, the last wins). Included: `balsamiq` (hand-drawn look and font) and `print` (grays for printing).
+- A **style** is shape and stroke: defaults per element (radius, stroke width, padding, italic arrows, shadow). It is a `.dg` library with `style` blocks, one per file, and the file name is the style name: `import rounded` then `style=rounded`. Several can be chained (`style=shadow,rounded`: for each setting the last one wins). Included:
+  - `boxed`: square boxes, thin lines, italic arrows.
+  - `rounded`: rounded boxes, thick arrows.
+  - Inspired by FLTK's box types: `flat` (solid blocks with no outline, like `FL_FLAT_BOX`), `shadow` (square with a hard shadow, `FL_SHADOW_BOX`), `rshadow` (rounded with a hard shadow, `FL_RSHADOW_BOX`) and `oval` (ellipses, `FL_OVAL_BOX`).
+- A **theme** is colors: a CSS file that redefines the `--c-*` palette and paints the background of the figure. `theme=NAME` (or `-T NAME` on the command line); several can be combined (`theme=github-light,gruvbox-light`, the last wins). Included, light: `github-light`, `one-light`, `gruvbox-light`, `catppuccin-latte`, `tomorrow`, `ayu-light`, `nord-light` and `solarized-light`; dark: `monokai`, `solarized-dark` and `zenburn`.
 
 Neither is embedded in the program: they are files, `lib/styles/NAME.dg` and `lib/themes/NAME.css`, and `make install` also copies them to `PREFIX/share/textod/styles` and `PREFIX/share/textod/themes` (`textod --libs` lists them). `import` and `theme=` look for them in the directory of the file, in the `-L` directories and in the ones that travel with the program (`lib/` or `../lib` next to the executable, `../share/textod` for an installation), in that order; a file of your own with the same name, next to the file or in a `-L` directory, wins.
