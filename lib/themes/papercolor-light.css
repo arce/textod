@@ -1,0 +1,42 @@
+/* Theme "papercolor-light": PaperColor Light: neutral gray paper with saturated navy, green and red.
+   Redefines the --c-* palette and paints the background of the figure (--c-canvas).
+   The color of a text over a fill is chosen when drawing, with the default palette: the strong colors
+   (primary, success, dark, text, muted) get the "white" ink, the others the "text" ink; that is why
+   --c-white is the light box color and the strong colors are deep. It can be combined with another theme (theme=a,b: the last one wins). */
+.theme-papercolor-light {
+  --c-text: #444444;
+  --c-muted: #6c6c6c;
+  --c-primary: #005f87;
+  --c-success: #008700;
+  --c-warning: #c25600;
+  --c-primary-soft: #c6dbe4;
+  --c-success-soft: #c6e4c6;
+  --c-warning-soft: #f6dbc6;
+  --c-border-soft: #cccccc;
+  --c-placeholder: #d6d6d6;
+  --c-bar: #ececec;
+  --c-border: #bcbcbc;
+  --c-primary-border: #669fb7;
+  --c-surface: #ffffff;
+  --c-canvas: #eeeeee;
+  --c-light: #b8d2dd;
+  --c-blue: #b8d2dd;
+  --c-dark: #005f87;
+  --c-white: #ffffff;
+  --c-silver: #e5e5e5;
+  --c-gray: #dadada;
+  --c-green: #b8ddb8;
+  --c-orange: #f2ccad;
+  --c-yellow: #f4e9b8;
+  --c-red: #e5adad;
+  --c-accent: #c25600;
+  --c-callout: #faf5e0;
+  --c-callout-border: #e9d373;
+  --c-callout-ink: #614f00;
+  --c-shadow-color: #ababab;
+  background: var(--c-canvas);
+}
+/* warning and accent are strong colors, but their default is a light one: their text takes the "white" ink */
+.theme-papercolor-light rect.c-f-warning + text, .theme-papercolor-light rect.c-f-accent + text { fill: var(--c-white); }
+/* the halo of the labels on connectors takes the color of the background */
+.theme-papercolor-light text[paint-order] { stroke: var(--c-canvas); }

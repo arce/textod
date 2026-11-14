@@ -13,6 +13,20 @@ diagram nord-light style=rounded theme=nord-light caption="theme=nord-light"
     box c "Store" yellow
   a -> b label="HTTP"
   b -> c
+diagram rose-pine-dawn style=rounded theme=rose-pine-dawn caption="theme=rose-pine-dawn"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
+diagram papercolor-light style=rounded theme=papercolor-light caption="theme=papercolor-light"
+  row gap=44
+    box a "Client" light
+    box b "API" primary
+    box c "Store" yellow
+  a -> b label="HTTP"
+  b -> c
 diagram solarized-light style=rounded theme=solarized-light caption="theme=solarized-light"
   row gap=44
     box a "Client" light
