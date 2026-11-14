@@ -1,4 +1,5 @@
 #pragma once
+#include <set>
 #include <string>
 #include <vector>
 
@@ -73,6 +74,23 @@ inline std::string cls(const std::string& fill, const std::string& stroke = "") 
   if (find(fill)) r += "c-f-" + fill;
   if (find(stroke)) r += (r.empty() ? "" : " ") + std::string("c-s-") + stroke;
   return r;
+}
+
+// What the marks with `hover=` need in the SVG: the one under the cursor is highlighted and the others of its group fade.
+// `groups` has NAME or NAME:SERIES (DRAW::group): with a series, the ones of the same series are highlighted together and
+// only the other series fade.
+inline std::string hoverCss(const std::set<std::string>& groups) {
+  std::string s = ".hl { cursor: pointer; transition: opacity .15s; }\n.hl:hover { stroke: #222; stroke-width: 1.5; }";
+  std::set<std::string> names;
+  for (auto& g : groups) names.insert(g.substr(0, g.find(':')));
+  for (auto& g : groups) {
+    size_t c = g.find(':');
+    if (c == std::string::npos) { s += "\nsvg:has(.hl-" + g + ":hover) .hl-" + g + ":not(:hover) { opacity: .45; }"; continue; }
+    std::string n = g.substr(0, c), k = ".hs-" + n + "_" + g.substr(c + 1);
+    if (groups.count(n)) names.erase(n), s += "\nsvg:has(.hl-" + n + ":hover) .hl-" + n + ":not(:hover) { opacity: .45; }";
+    s += "\nsvg:has(" + k + ":hover) .hl-" + n + ":not(" + k + ") { opacity: .45; }\nsvg:has(" + k + ":hover) " + k + " { stroke: #222; stroke-width: 1.5; }";
+  }
+  return s;
 }
 
 inline std::string css() {

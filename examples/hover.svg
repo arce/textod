@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="262" height="132">
+  <style><![CDATA[
+.hl { cursor: pointer; transition: opacity .15s; }
+.hl:hover { stroke: #222; stroke-width: 1.5; }
+svg:has(.hl-other:hover) .hl-other:not(:hover) { opacity: .45; }
+svg:has(.hl-sales:hover) .hl-sales:not(:hover) { opacity: .45; }
+  ]]></style>
+  <g transform="translate(6,6)">
+  <g transform="translate(0,0)">
+  <rect x="10" y="60" width="40" height="50" class="c-f-primary-soft c-s-primary hl hl-sales" fill="#eaf3fa" stroke="#2c81ba" stroke-width="1.6"><title>Jan
+10</title></rect>
+  <rect x="60" y="40" width="40" height="70" class="c-f-primary-soft c-s-primary hl hl-sales" fill="#eaf3fa" stroke="#2c81ba" stroke-width="1.6"><title>Feb
+12</title></rect>
+  <rect x="110" y="75" width="40" height="35" class="c-f-primary-soft c-s-primary hl hl-sales" fill="#eaf3fa" stroke="#2c81ba" stroke-width="1.6"><title>Mar
+9</title></rect>
+  <ellipse cx="185" cy="60" rx="14" ry="14" class="c-f-warning c-s-text hl hl-other" fill="#e67e22" stroke="#2c3e50" stroke-width="1.6"><title>another group: it does not react to the bars</title></ellipse>
+  <ellipse cx="225" cy="60" rx="14" ry="14" class="c-f-warning c-s-text" fill="#e67e22" stroke="#2c3e50" stroke-width="1.6"><title>only the tooltip</title></ellipse>
+</g>
+</g>
+</svg>

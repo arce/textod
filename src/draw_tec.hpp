@@ -55,11 +55,31 @@ S& paint(S& s, const std::string& fill, const std::string& stroke, double sw, co
   return s;
 }
 
+// `hover=NAME` (any value but 0): the mark is highlighted under the cursor and the other marks with the same NAME fade;
+// marks with another NAME do not react to it (the CSS is in the SVG, see THEME::hoverCss). `hover=NAME:SERIES`: the marks
+// of the same series are highlighted together and only the marks of the other series of NAME fade.
+inline bool interactive(const Item& it) { return it.has("hover") && it.attr("hover") != "0" && !it.attr("hover").empty(); }
+inline std::string safe(std::string g) {
+  for (auto& c : g) if (!isalnum(static_cast<unsigned char>(c)) && c != '-' && c != '_') c = '_';
+  return g;
+}
+inline std::string group(const Item& it) {  // NAME or NAME:SERIES, without strange characters
+  std::string g = it.attr("hover"), p = g.find(':') == std::string::npos ? "" : g.substr(g.find(':') + 1);
+  g = safe(g.substr(0, g.find(':')));
+  return p.empty() ? g : g + ":" + safe(p);
+}
+inline std::string classes(const Item& it) {
+  std::string g = group(it), n = g.substr(0, g.find(':'));
+  return "hl hl-" + n + (g == n ? "" : " hs-" + n + "_" + g.substr(n.size() + 1));
+}
+
 template <class S>
 S& finish(S& s, const Item& it) {
   if (it.has("linecap")) s.cap(it.attr("linecap"));
   if (it.has("join")) s.join(it.attr("join"));
   if (it.num("alpha", 1) < 1) s.opacity(it.num("alpha", 1));
+  if (it.has("tooltip")) s.tooltip(it.attr("tooltip"));
+  if (interactive(it)) s.addCls(classes(it));
   return s;
 }
 

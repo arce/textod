@@ -113,7 +113,7 @@ protected:
   bool strokeSet{false};
   Stroke strokeStyle;
   double alpha{-1};
-  std::string xform, idv, clsv, extra;
+  std::string xform, idv, clsv, extra, tipv;
 
   std::string tag(const std::string& name, const std::string& attrs, bool useFill = true, bool useStroke = true, const std::string& body = "") const {
     std::stringstream ss;
@@ -128,7 +128,8 @@ protected:
     if (alpha >= 0) ss << " opacity=\"" << num(alpha) << "\"";
     ss << extra;
     if (!xform.empty()) ss << " transform=\"" << esc(xform) << "\"";
-    if (body.empty()) ss << "/>"; else ss << ">" << body << "</" << name << ">";
+    std::string inner = body.empty() && !tipv.empty() ? "<title>" + esc(tipv) + "</title>" : body;  // the tooltip of the browser
+    if (inner.empty()) ss << "/>"; else ss << ">" << inner << "</" << name << ">";
     return ss.str();
   }
 public:
@@ -150,6 +151,8 @@ public:
   D& opacity(double a) { alpha = a; return self(); }
   D& id(const std::string& v) { idv = v; return self(); }
   D& cls(const std::string& v) { clsv = v; return self(); }
+  D& addCls(const std::string& v) { clsv += (clsv.empty() ? "" : " ") + v; return self(); }
+  D& tooltip(const std::string& v) { tipv = v; return self(); }
   D& attr(const std::string& name, const std::string& value) { extra += " " + name + "=\"" + esc(value) + "\""; return self(); }
   D& transform(const std::string& t) { xform = t; return self(); }
   D& transform(const Transform& t) { return transform(t.toString()); }
@@ -364,6 +367,7 @@ public:
   Svg& title(const std::string& t) { titleText = t; return *this; }
   Svg& cls(const std::string& c) { rootClass = c; return *this; }
   Svg& style(const std::string& cssText) { css = cssText; return *this; }
+  Svg& addStyle(const std::string& cssText) { css += (css.empty() ? "" : "\n") + cssText; return *this; }
   Svg& defs(const std::string& markup) { defsMarkup = markup; return *this; }
 
   std::string toString() const {

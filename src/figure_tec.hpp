@@ -23,7 +23,7 @@ inline const std::set<std::string> ATTRS_CORE{
 inline const std::set<std::string> ATTRS_SHAPE{"r", "cx", "cy", "rx", "ry", "x1", "y1", "x2", "y2", "d", "pts", "tx", "ty"};
 inline const std::set<std::string> ATTRS_EXT{
   "alpha", "rotate", "border", "capsize", "captionpos", "captionstyle", "rspan", "layout", "label", "side", "margin", "linecap", "join",
-  "theme", "gapx", "gapy", "base", "weights", "metric", "valign", "around", "padtop", "tip", "tail", "flex", "shadow"};
+  "theme", "gapx", "gapy", "base", "weights", "metric", "valign", "around", "padtop", "tip", "tail", "flex", "shadow", "tooltip", "hover"};
 inline const std::set<std::string> ATTRS = [] {
   std::set<std::string> s = ATTRS_CORE;
   s.insert(ATTRS_SHAPE.begin(), ATTRS_SHAPE.end());
@@ -275,6 +275,12 @@ inline bool implicitColumn(const Item& root) {
   return flows >= 2;
 }
 
+// The groups of the marks of the figure that ask for `hover=`.
+inline void hovers(const Item& it, std::set<std::string>& groups) {
+  if (DRAW::interactive(it)) groups.insert(DRAW::group(it));
+  for (auto& k : it.kids) hovers(k, groups);
+}
+
 inline void theme(SVG::Svg& svg, const DSL::Node& n, const std::string& names, const DSL::Resolver& res) {
   std::string css = THEME::css(), cls;
   for (auto& name : DSL::list(names)) {
@@ -392,6 +398,9 @@ inline Out block(const DSL::Node& tree, const DSL::Node& n, const DSL::Resolver&
   SVG::Svg svg(w, total);
   std::string th = n.attr("theme", dflt);
   if (!th.empty()) theme(svg, n, th, res);
+  std::set<std::string> groups;
+  hovers(root, groups);
+  if (!groups.empty()) svg.addStyle(THEME::hoverCss(groups));
   if (root.flag("frame")) DRAW::paint(svg.rect(0.5, 0.5, w - 1, h - 1), "", "text", 1.0);
   if (root.has("fill")) DRAW::paint(svg.rect(1, 1, w - 2, h - 2), root.attr("fill"), root.attr("stroke", "none"), 1.0);
   SVG::Group& g = svg.group();

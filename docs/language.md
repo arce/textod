@@ -38,6 +38,7 @@ diagram hello style=boxed caption="Two boxes"
 | `shadow=N` | a hard shadow, N pixels to the lower right, behind a `box` (its color is `shadow-color` in the palette); leave room for it with `margin` if N is larger than 6 |
 | `size`, `color`, `bold`, `italic`, `mono`, `rotate` | text |
 | `caption`, `title` | text under or over a figure |
+| `tooltip`, `hover` | on the primitives of a `shape` (`rect`, `ellipse`, `line`, `path`, `poly`): `tooltip="text"` is the text the browser shows over the mark (`\n` is a new line, it goes in a `<title>`); `hover=NAME` highlights the mark under the cursor and fades the other marks with the same NAME (marks with another NAME do not react); `hover=NAME:SERIES` highlights together the marks of the same series and fades only the other series of NAME. The CSS goes inside the SVG, only when a mark uses `hover` (`examples/hover.dg`); it works when the SVG is opened in a browser or inline in a page, not as an `<img>` |
 | `flex`, `flex=N` | a child of a `row` or `col` shares the free space of the main axis in proportion to N |
 
 Colors are theme names (`light`, `blue`, `primary-soft`, ...) or `#rrggbb`. An unknown attribute is an error with a suggestion.
