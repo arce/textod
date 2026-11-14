@@ -23,7 +23,7 @@ inline const std::set<std::string> ATTRS_CORE{
 inline const std::set<std::string> ATTRS_SHAPE{"r", "cx", "cy", "rx", "ry", "x1", "y1", "x2", "y2", "d", "pts", "tx", "ty"};
 inline const std::set<std::string> ATTRS_EXT{
   "alpha", "rotate", "border", "capsize", "captionpos", "captionstyle", "rspan", "layout", "label", "side", "margin", "linecap", "join",
-  "theme", "gapx", "gapy", "base", "weights", "metric", "valign", "around", "padtop", "tip", "tail", "flex", "shadow", "tooltip", "hover"};
+  "theme", "gapx", "gapy", "base", "weights", "metric", "valign", "around", "padtop", "tip", "tail", "flex", "shadow", "tooltip", "class", "tabindex"};
 inline const std::set<std::string> ATTRS = [] {
   std::set<std::string> s = ATTRS_CORE;
   s.insert(ATTRS_SHAPE.begin(), ATTRS_SHAPE.end());
@@ -275,12 +275,6 @@ inline bool implicitColumn(const Item& root) {
   return flows >= 2;
 }
 
-// The groups of the marks of the figure that ask for `hover=`.
-inline void hovers(const Item& it, std::set<std::string>& groups) {
-  if (DRAW::interactive(it)) groups.insert(DRAW::group(it));
-  for (auto& k : it.kids) hovers(k, groups);
-}
-
 inline void theme(SVG::Svg& svg, const DSL::Node& n, const std::string& names, const DSL::Resolver& res) {
   std::string css = THEME::css(), cls;
   for (auto& name : DSL::list(names)) {
@@ -290,6 +284,17 @@ inline void theme(SVG::Svg& svg, const DSL::Node& n, const std::string& names, c
     cls += (cls.empty() ? "theme-" : " theme-") + file.substr(0, file.rfind('.'));
   }
   svg.style(css).cls(cls);
+}
+
+// `css "rules"` goes as it is inside the <style> of the figure; at the top level of the file it is for every figure, and anywhere
+// inside a diagram (a `def` can bring its own rules) it is for that one. They are taken out of the tree: they are not elements.
+inline void takeCss(DSL::Node& n, std::vector<std::string>& rules) {
+  std::vector<DSL::Node> keep;
+  for (auto& k : n.kids) {
+    if (k.head == "css") for (auto& r : k.pos()) rules.push_back(r);
+    else { takeCss(k, rules); keep.push_back(k); }
+  }
+  n.kids = keep;
 }
 
 inline Out block(const DSL::Node& tree, const DSL::Node& n, const DSL::Resolver& res, const std::string& dflt) {
@@ -302,7 +307,11 @@ inline Out block(const DSL::Node& tree, const DSL::Node& n, const DSL::Resolver&
         throw Error(n.line, "unknown style '" + one + "'" + DSL::suggest(one, names));
   }
   FIG::Style st = FIG::style(tree, sn);
-  Item root = FIG::build(n, st);
+  DSL::Node own = n;  // the diagram without its `css` lines (they are not elements): the ones of the top level and its own
+  std::vector<std::string> rules;
+  for (auto& k : tree.kids) if (k.head == "css") for (auto& r : k.pos()) rules.push_back(r);
+  takeCss(own, rules);
+  Item root = FIG::build(own, st);
   root.kind = implicitColumn(root) ? "col" : "canvas";
   check(root);
   struct Est {
@@ -398,9 +407,8 @@ inline Out block(const DSL::Node& tree, const DSL::Node& n, const DSL::Resolver&
   SVG::Svg svg(w, total);
   std::string th = n.attr("theme", dflt);
   if (!th.empty()) theme(svg, n, th, res);
-  std::set<std::string> groups;
-  hovers(root, groups);
-  if (!groups.empty()) svg.addStyle(THEME::hoverCss(groups));
+  std::set<std::string> seen;  // a rule that is written twice (a `def` used several times) goes once
+  for (auto& r : rules) if (seen.insert(r).second) svg.addStyle(r);
   if (root.flag("frame")) DRAW::paint(svg.rect(0.5, 0.5, w - 1, h - 1), "", "text", 1.0);
   if (root.has("fill")) DRAW::paint(svg.rect(1, 1, w - 2, h - 2), root.attr("fill"), root.attr("stroke", "none"), 1.0);
   SVG::Group& g = svg.group();
@@ -416,7 +424,7 @@ inline std::vector<Out> render(const std::string& src, const DSL::Resolver& res 
   DSL::Node tree = DSL::compile(src, res);
   std::vector<Out> out;
   for (auto& n : tree.kids) {
-    if (n.head == "style") continue;
+    if (n.head == "style" || n.head == "css") continue;
     if (n.head != "diagram") throw Error(n.line, "only 'diagram' goes at the top level, not '" + n.head + "'");
     out.push_back(block(tree, n, res, dflt));
   }

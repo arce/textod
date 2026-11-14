@@ -1,0 +1,10 @@
+# css "rule" can also go inside a diagram (or a shape): it is for that figure only; a rule that is repeated goes once.
+css "svg { background: #fff; }"
+
+diagram one
+  css ".a { opacity: .5; }"
+  shape w=60 h=30
+    css ".a:hover { opacity: 1; }"
+    rect x=5 y=5 w=20 h=20 fill=primary-soft class=a
+    rect x=35 y=5 w=20 h=20 fill=primary-soft class=a
+    css ".a:hover { opacity: 1; }"

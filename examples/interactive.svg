@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="202" height="142">
+  <style><![CDATA[
+.hl { cursor: pointer; transition: opacity .15s; outline: none; }
+.hl:hover, .hl:focus { stroke: #222; stroke-width: 1.5; }
+svg:has(.hl:hover) .hl:not(:hover) { opacity: .45; }
+svg:has(.hl:focus) .hl:not(:focus) { opacity: .2; }
+  ]]></style>
+  <g transform="translate(6,6)">
+  <g transform="translate(0,0)">
+  <rect x="10" y="60" width="40" height="50" class="c-f-primary-soft c-s-primary hl" fill="#eaf3fa" stroke="#2c81ba" stroke-width="1.6" tabindex="0"><title>Jan
+10</title></rect>
+  <rect x="60" y="40" width="40" height="70" class="c-f-primary-soft c-s-primary hl" fill="#eaf3fa" stroke="#2c81ba" stroke-width="1.6" tabindex="0"><title>Feb
+12</title></rect>
+  <rect x="110" y="75" width="40" height="35" class="c-f-primary-soft c-s-primary hl" fill="#eaf3fa" stroke="#2c81ba" stroke-width="1.6" tabindex="0"><title>Mar
+9</title></rect>
+</g>
+</g>
+</svg>

@@ -1,0 +1,12 @@
+# textod only passes class=, tabindex= and tooltip= to the SVG and copies the css "..." rules: what they mean (here: the
+# other bars fade when one is under the cursor, a click keeps it) is made by whoever writes the .dg.
+css ".hl { cursor: pointer; transition: opacity .15s; outline: none; }"
+css ".hl:hover, .hl:focus { stroke: #222; stroke-width: 1.5; }"
+css "svg:has(.hl:hover) .hl:not(:hover) { opacity: .45; }"
+css "svg:has(.hl:focus) .hl:not(:focus) { opacity: .2; }"
+
+diagram interactive
+  shape w=190 h=130
+    rect x=10 y=60 w=40 h=50 fill=primary-soft stroke=primary class=hl tabindex=0 tooltip="Jan\n10"
+    rect x=60 y=40 w=40 h=70 fill=primary-soft stroke=primary class=hl tabindex=0 tooltip="Feb\n12"
+    rect x=110 y=75 w=40 h=35 fill=primary-soft stroke=primary class=hl tabindex=0 tooltip="Mar\n9"

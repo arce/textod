@@ -1,7 +1,0 @@
-diagram hover
-  shape w=250 h=120
-    rect x=10 y=60 w=40 h=50 fill=primary-soft stroke=primary hover=sales tooltip="Jan\n10"
-    rect x=60 y=40 w=40 h=70 fill=primary-soft stroke=primary hover=sales tooltip="Feb\n12"
-    rect x=110 y=75 w=40 h=35 fill=primary-soft stroke=primary hover=sales tooltip="Mar\n9"
-    ellipse cx=185 cy=60 rx=14 ry=14 fill=warning stroke=text hover=other tooltip="another group: it does not react to the bars"
-    ellipse cx=225 cy=60 rx=14 ry=14 fill=warning stroke=text tooltip="only the tooltip"
