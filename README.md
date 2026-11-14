@@ -2,7 +2,7 @@
 
 Turns **plain-language** diagram text into SVG.
 
-`textod` has no macro expander and no charts, so it is small and has no dependencies besides the C++ standard library.
+`textod` is small and has no dependencies besides the C++ standard library.
 
 The language it reads is described in [docs/language.md](docs/language.md); the plain-language subset that other programs can generate is fixed in [docs/plain-language.md](docs/plain-language.md).
 
@@ -63,8 +63,8 @@ make install    # /usr/local/bin/textod and the styles and themes in /usr/local/
 make clean
 ```
 
-It needs `make` and a C++17 compiler (g++ or clang++); nothing else (no Python, no other tools). `make` compiles `src/textod.cpp` (the rest of `src/` are headers) into a single executable.
+It needs `make` and a C++17 compiler (g++ or clang++). `make` compiles `src/textod.cpp` (the rest of `src/` are headers) into a single executable.
 
-The styles (`lib/styles/*.dg`) and the themes (`lib/themes/*.css`) are not embedded: they are files that `textod` reads when it runs, so one can be added or changed without compiling. `textod` looks for them next to the executable (`lib/` or `../lib`), so `build/textod` finds the ones of this repository from any directory. `make install` copies them to `$(DATADIR)/styles` and `$(DATADIR)/themes` (`DATADIR` is `PREFIX/share/textod`), where the installed `textod` finds them (`../share/textod` from its `bin/`), so the installation can be moved as a whole.
+The styles (`lib/styles/*.dg`) and the themes (`lib/themes/*.css`) are files that `textod` reads when it runs, so one can be added or changed without compiling. `textod` looks for them next to the executable (`lib/` or `../lib`), so `build/textod` finds the ones of this repository from any directory. `make install` copies them to `$(DATADIR)/styles` and `$(DATADIR)/themes` (`DATADIR` is `PREFIX/share/textod`), where the installed `textod` finds them (`../share/textod` from its `bin/`), so the installation can be moved as a whole.
 
 The build uses `-ffp-contract=off` so the output is identical on ARM and x86.
