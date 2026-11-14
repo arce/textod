@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="469.12" height="96">
+  <g transform="translate(6,6)">
+  <rect x="0" y="16" width="100" height="52" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="50" y="47.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">App</text>
+  <g transform="translate(180,0)">
+  <ellipse cx="55" cy="70" rx="55" ry="14" class="c-f-yellow c-s-text" fill="#fbeeb0" stroke="#2c3e50" stroke-width="1.6"/>
+  <rect x="0" y="14" width="110" height="56" class="c-f-yellow" fill="#fbeeb0" stroke="none"/>
+  <line x1="0" y1="14" x2="0" y2="70" class="c-s-text" stroke="#2c3e50" stroke-width="1.6"/>
+  <line x1="110" y1="14" x2="110" y2="70" class="c-s-text" stroke="#2c3e50" stroke-width="1.6"/>
+  <ellipse cx="55" cy="14" rx="55" ry="14" class="c-s-text" fill="#fcf4cf" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="55" y="47.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Orders</text>
+</g>
+  <path d="M 100 42 L 170.65 42" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="180,42 169,47.06 169,36.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="140" y="30.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">INSERT</text>
+  <line x1="290" y1="42" x2="338" y2="42" class="c-s-callout-border" stroke="#b8a26b" stroke-width="1"/>
+  <ellipse cx="290" cy="42" rx="3" ry="3" class="c-f-callout-border" fill="#b8a26b" stroke="none"/>
+  <rect x="338" y="24" width="119.12" height="36" rx="4" ry="4" class="c-f-callout c-s-callout-border" fill="#fefcf3" stroke="#b8a26b" stroke-width="1"/>
+  <text x="350" y="47.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="start" class="c-f-callout-ink" fill="#3d3526">Primary store</text>
+</g>
+</svg>

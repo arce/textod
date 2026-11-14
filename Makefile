@@ -7,13 +7,14 @@ DEFS     :=
 
 HEADERS  := $(shell find src -name '*.hpp')
 
-.PHONY: all test check install uninstall clean help
+.PHONY: all test check site install uninstall clean help
 
 all: build/$(PROG)
 
 help:
 	@echo "make            builds build/$(PROG)"
 	@echo "make check      renders examples/*.dg and compares them with the .svg next to them"
+	@echo "make site       copies the rendered examples to docs/img (the images of the GitHub Pages site)"
 	@echo "make install    installs into $(PREFIX)/bin and the styles and themes into $(DATADIR) (PREFIX=... to change it)"
 	@echo "make clean      removes build/"
 
@@ -34,6 +35,13 @@ check: build/$(PROG)
 		if cmp -s $$f examples/$$n; then echo "ok    $$n"; else echo "DIFF  $$n"; fail=1; fi; \
 	done; \
 	[ $$fail = 0 ] && echo "examples ok"; exit $$fail
+
+# the images of the site (docs/index.html) are examples rendered by textod
+SITE_IMAGES := hello pipeline architecture states shapes wireframe looks-silberschatz looks-oreilly looks-balsamiq looks-print
+
+site: check
+	mkdir -p docs/img
+	for n in $(SITE_IMAGES); do cp examples/$$n.svg docs/img/; done
 
 install: build/$(PROG)
 	install -d $(PREFIX)/bin

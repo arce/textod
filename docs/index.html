@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>textod: diagrams from plain text</title>
+<meta name="description" content="textod turns a small indented text language into clean SVG diagrams. One program, no dependencies, the same input always gives the same picture.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='9' width='11' height='14' rx='3' fill='%23dbe8f5' stroke='%231b2b3b' stroke-width='2'/%3E%3Crect x='19' y='9' width='11' height='14' rx='3' fill='%23d2ecd0' stroke='%231b2b3b' stroke-width='2'/%3E%3Cpath d='M13 16h6' stroke='%231b2b3b' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+:root {
+  --ink: #1b2b3b;
+  --ink-soft: #4c6176;
+  --paper: #f4f7fa;
+  --grid: #e0e8f0;
+  --rule: #c3d0dc;
+  --link: #1d6597;
+  --code-bg: #ffffff;
+  --code-ink: #1b2b3b;
+  --tok-kw: #1d6597;
+  --tok-str: #2f7a52;
+  --tok-attr: #9a5410;
+  --tok-op: #b0402f;
+  --tok-com: #6a7d90;
+  --tok-num: #6b4fa3;
+  --sans: "Avenir Next", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, "Liberation Mono", monospace;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --wrap: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e3ecf4;
+    --ink-soft: #9db0c2;
+    --paper: #0e1a26;
+    --grid: #15273a;
+    --rule: #28405a;
+    --link: #79bbea;
+    --code-bg: #0a141e;
+    --code-ink: #dce7f1;
+    --tok-kw: #79bbea;
+    --tok-str: #7fcf9f;
+    --tok-attr: #e8a864;
+    --tok-op: #f0897a;
+    --tok-com: #7c91a6;
+    --tok-num: #b9a2ec;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--link); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: .6rem 1rem; z-index: 10; }
+.skip:focus { left: 0; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 1.5rem; }
+
+/* top bar */
+.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
+.top .wrap { display: flex; align-items: center; gap: 2rem; min-height: 3.5rem; }
+.mark { font: 700 1.25rem/1 var(--mono); color: var(--ink); text-decoration: none; letter-spacing: -0.03em; }
+.top nav { display: flex; flex-wrap: wrap; gap: .25rem 1.4rem; margin-left: auto; font-size: .95rem; }
+.top nav a { color: var(--ink-soft); text-decoration: none; padding: .25rem 0; }
+.top nav a:hover { color: var(--ink); text-decoration: underline; }
+
+/* hero */
+.hero {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+  border-bottom: 1px solid var(--rule);
+  padding: 4.5rem 0 3.5rem;
+}
+h1 { font: 700 clamp(2.4rem, 6vw, 4.2rem)/1.04 var(--sans); letter-spacing: -0.035em; margin: 0 0 1.2rem; max-width: 15ch; }
+.lede { font-size: 1.25rem; line-height: 1.5; max-width: 38em; margin: 0 0 2.6rem; color: var(--ink); }
+.pair { display: grid; grid-template-columns: minmax(0, 1.5fr) auto minmax(0, 1fr); gap: 0; align-items: stretch; margin-bottom: 1.6rem; }
+.pair .arrow { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 .9rem; color: var(--ink-soft); }
+.pair .arrow svg { width: 3.2rem; height: auto; stroke: currentColor; fill: none; stroke-width: 2; }
+.pair .arrow span { font: .78rem/1.3 var(--mono); margin-top: .4rem; text-align: center; max-width: 6rem; }
+.cmdline { display: flex; align-items: stretch; max-width: 36rem; }
+
+/* code */
+pre, code { font-family: var(--mono); }
+pre.dg, pre.sh {
+  margin: 0; padding: 1rem 1.15rem; background: var(--code-bg); color: var(--code-ink);
+  border: 1px solid var(--rule); border-radius: 3px; font-size: .85rem; line-height: 1.55;
+  overflow-x: auto; tab-size: 2;
+}
+.k { color: var(--tok-kw); font-weight: 600; }
+.s { color: var(--tok-str); }
+.a { color: var(--tok-attr); }
+.o { color: var(--tok-op); font-weight: 600; }
+.c { color: var(--tok-com); font-style: italic; }
+.n { color: var(--tok-num); }
+.codebox { position: relative; }
+.copy {
+  position: absolute; top: .45rem; right: .45rem; font: .75rem/1 var(--sans);
+  background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-radius: 3px;
+  padding: .35rem .55rem; cursor: pointer;
+}
+.copy:hover { border-color: var(--ink-soft); }
+.cmdline .codebox { flex: 1; }
+.cmdline pre { height: 100%; padding-right: 4.5rem; }
+code.i { font-size: .92em; background: color-mix(in srgb, var(--rule) 35%, transparent); padding: .08em .35em; border-radius: 3px; }
+
+/* figure plates */
+.plate { margin: 0; background: #fff; border: 1px solid var(--rule); border-radius: 3px; padding: 1.4rem 1.4rem 1rem; color: #1b2b3b; display: flex; flex-direction: column; }
+.plate .art { display: flex; flex: 1; overflow-x: auto; }
+.plate img { display: block; width: 100%; max-width: calc(var(--nat, 400px) * 1.25); height: auto; margin: auto; }
+.plate figcaption { font: italic 0.95rem/1.4 var(--serif); margin-top: .9rem; padding-top: .6rem; border-top: 1px solid #dde5ec; color: #3b4d5f; }
+.pair .plate { min-height: 100%; }
+
+/* sections */
+section { padding: 4.5rem 0 1rem; }
+h2 { font: 700 clamp(1.7rem, 3.4vw, 2.4rem)/1.12 var(--sans); letter-spacing: -0.025em; margin: 0 0 .7rem; max-width: 22ch; }
+h3 { font: 650 1.15rem/1.3 var(--sans); margin: 0 0 .35rem; letter-spacing: -0.01em; }
+.intro { max-width: 40em; color: var(--ink-soft); margin: 0 0 2.4rem; }
+.intro a { color: var(--link); }
+.fig { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); gap: 1.6rem; align-items: start; padding: 2rem 0; border-top: 1px solid var(--rule); }
+.fig:first-of-type { border-top: 0; padding-top: 0; }
+.fig .text h3 { margin-bottom: .5rem; }
+.fig.wide { grid-template-columns: minmax(0, 1fr); }
+.fig.wide .text { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr); gap: 1.6rem; align-items: start; }
+.fig .text p { margin: 0 0 1rem; color: var(--ink-soft); }
+.looks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; margin: 0 0 1.6rem; }
+.split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.4rem; align-items: start; }
+.split p { margin: 0 0 1rem; }
+
+dl.uses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 3rem; margin: 0; }
+dl.uses dt { font: 650 1.1rem/1.3 var(--sans); margin-bottom: .25rem; }
+dl.uses dd { margin: 0; color: var(--ink-soft); }
+ul.feat { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 3rem; }
+ul.feat li { padding: 1rem 0; border-top: 1px solid var(--rule); }
+ul.feat li b { display: block; font-weight: 650; margin-bottom: .15rem; }
+ul.feat li span { color: var(--ink-soft); }
+
+table { border-collapse: collapse; width: 100%; font-size: .98rem; }
+th, td { text-align: left; vertical-align: top; padding: .6rem .8rem .6rem 0; border-top: 1px solid var(--rule); }
+th { font-weight: 650; width: 11rem; white-space: nowrap; }
+td code, th code { font-size: .9em; }
+
+.steps > div { margin: 0 0 2rem; }
+.steps p { margin: 0 0 .7rem; color: var(--ink-soft); max-width: 40em; }
+
+details.faq { border-top: 1px solid var(--rule); padding: 1rem 0; }
+details.faq:last-of-type { border-bottom: 1px solid var(--rule); }
+details.faq summary { cursor: pointer; font-weight: 650; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq summary::after { content: "+"; font: 400 1.4rem/1 var(--mono); color: var(--ink-soft); }
+details.faq[open] summary::after { content: "\2212"; }
+details.faq p { margin: .7rem 0 0; color: var(--ink-soft); max-width: 42em; }
+
+footer { margin-top: 5rem; border-top: 1px solid var(--rule); padding: 2rem 0 3rem; color: var(--ink-soft); font-size: .95rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: .6rem 2rem; justify-content: space-between; }
+
+@media (max-width: 860px) {
+  .pair { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .pair .arrow { flex-direction: row; padding: .2rem 0; }
+  .pair .arrow svg { transform: rotate(90deg); width: 2.4rem; }
+  .pair .arrow span { margin: 0 0 0 .8rem; max-width: none; }
+  .fig, .fig.wide .text, .split, dl.uses, ul.feat { grid-template-columns: minmax(0, 1fr); }
+  .top nav { display: none; }
+  .hero { padding-top: 3rem; }
+}
+@media (max-width: 520px) {
+  .looks { grid-template-columns: minmax(0, 1fr); }
+  .plate img { min-width: min(var(--nat, 400px), 460px); }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">textod</a>
+    <nav aria-label="Sections">
+      <a href="#examples">Examples</a>
+      <a href="#looks">Styles and themes</a>
+      <a href="#uses">Uses</a>
+      <a href="#workflow">In your build</a>
+      <a href="#language">Language</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/arce/textod">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero" id="top">
+  <div class="wrap">
+    <h1>Write the diagram. Get the SVG.</h1>
+    <p class="lede">textod reads a small indented language of boxes, rows, columns and arrows and draws it as SVG. It is a single program with no dependencies, and the same input always gives the same picture.</p>
+
+    <div class="pair">
+      <div class="codebox">
+        <pre class="dg" aria-label="Source: hello.dg">import oreilly
+diagram hello style=oreilly
+  row gap=70
+    box client "Client" light
+    box server "Server" blue
+  client -&gt; server label="request"
+  server.bottom -&gt; client.bottom elbow dash="6 4" label="response"</pre>
+        <button class="copy" type="button" data-copy-from="previous">Copy</button>
+      </div>
+      <div class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 52 20"><path d="M2 10h44M38 3l8 7-8 7"/></svg>
+        <span>textod hello.dg</span>
+      </div>
+      <figure class="plate">
+        <div class="art"><img src="img/hello.svg" alt="Two rounded boxes, Client and Server. A solid arrow labelled request goes from Client to Server, and a dashed arrow labelled response comes back." style="--nat:226px" width="226" height="85"></div>
+        <figcaption>hello.svg, as written to the standard output.</figcaption>
+      </figure>
+    </div>
+
+    <div class="cmdline">
+      <div class="codebox">
+        <pre class="sh">textod hello.dg &gt; hello.svg</pre>
+        <button class="copy" type="button" data-copy-from="previous">Copy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="examples">
+  <div class="wrap">
+    <h2>Examples</h2>
+    <p class="intro">Every figure on this page was drawn by textod from the text next to it. The sources are in the <a href="https://github.com/arce/textod/tree/main/examples"><code class="i">examples/</code></a> folder of the repository.</p>
+
+    <div class="fig wide">
+      <figure class="plate">
+        <div class="art"><img src="img/pipeline.svg" alt="Five boxes in a row joined by arrows: Source, Build, Test, Package, Deploy. A dashed arrow labelled tests fail returns from Test to Source." style="--nat:557px" width="557" height="101"></div>
+        <figcaption>Figure 1. A build pipeline with a feedback path.</figcaption>
+      </figure>
+      <div class="text"><div><h3>Flows and chains</h3>
+        <p>A chain of <code class="i">-&gt;</code> joins neighbours. An <code class="i">elbow</code> connector leaves one side of a box and enters the side of another, so a loop back is one line.</p></div><div class="codebox"><pre class="dg">import oreilly
+diagram pipeline style=oreilly
+  row gap=44
+    box src "Source" light
+    box build "Build" green
+    box test "Test" yellow
+    box pack "Package" orange
+    box ship "Deploy" blue
+  src -&gt; build -&gt; test -&gt; pack -&gt; ship
+  test.bottom -&gt; src.bottom elbow dash="6 4" label="tests fail" side=below</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div></div>
+    </div>
+
+    <div class="fig wide">
+      <figure class="plate">
+        <div class="art"><img src="img/architecture.svg" alt="Web app and Mobile app on the left send requests to an API box inside a group called Backend, which also holds a Worker. The API sends data to a Cache and a Database on the right; the Worker also writes to the Database." style="--nat:546px" width="546" height="176"></div>
+        <figcaption>Figure 2. A small web architecture.</figcaption>
+      </figure>
+      <div class="text"><div><h3>Groups and layout</h3>
+        <p>Rows and columns place their children, and a <code class="i">group</code> draws a titled frame around a few of them. Connectors only name boxes by id.</p></div><div class="codebox"><pre class="dg">import oreilly
+diagram architecture style=oreilly
+  row gap=84 align=center
+    col gap=26
+      box web "Web app" light w=110
+      box mobile "Mobile app" light w=110
+    group backend "Backend" pad=18
+      col gap=26
+        box api "API" green w=110
+        box worker "Worker" green w=110
+    col gap=26
+      box cache "Cache" orange w=110
+      box db "Database" yellow w=110
+  web -&gt; api label="HTTPS"
+  mobile -&gt; api
+  api -&gt; cache
+  api -&gt; db label="SQL"
+  api -&gt; worker dash="6 4" label="jobs"
+  worker -&gt; db</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div></div>
+    </div>
+
+    <div class="fig wide">
+      <figure class="plate">
+        <div class="art"><img src="img/states.svg" alt="An order lifecycle: New, Paid, Shipped and Delivered in a row joined by arrows labelled payment, packed and signed for. Cancelled sits below, reached from New by cancel and from Paid by refund." style="--nat:658px" width="658" height="162"></div>
+        <figcaption>Figure 3. The states of an order.</figcaption>
+      </figure>
+      <div class="text"><div><h3>State machines</h3>
+        <p>Anchors choose where a connector touches a box (<code class="i">paid.bottom</code>), and <code class="i">side=below</code> moves its label to the other side of the line.</p></div><div class="codebox"><pre class="dg">import oreilly
+diagram states style=oreilly
+  col gap=60 align=start
+    row gap=100
+      box new "New" light w=80
+      box paid "Paid" green w=80
+      box shipped "Shipped" yellow w=90
+      box done "Delivered" blue w=96
+    box cancelled "Cancelled" red w=100
+  new -&gt; paid label="payment"
+  paid -&gt; shipped label="packed"
+  shipped -&gt; done label="signed for"
+  new.bottom -&gt; cancelled.top label="cancel"
+  paid.bottom -&gt; cancelled.right elbow label="refund" side=below</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div></div>
+    </div>
+
+    <div class="fig">
+      <figure class="plate">
+        <div class="art"><img src="img/shapes.svg" alt="A box labelled App with an arrow labelled INSERT to a drawn database cylinder labelled Orders. A note reading Primary store is attached to the cylinder." style="--nat:469px" width="469" height="96"></div>
+        <figcaption>Figure 4. A custom shape and a callout.</figcaption>
+      </figure>
+      <div class="text">
+        <h3>Your own shapes</h3>
+        <p>A <code class="i">shape</code> is drawn from rectangles, ellipses, lines and paths whose numbers are expressions of its own width <code class="i">w</code> and height <code class="i">h</code>, so it resizes like any other box.</p>
+        <div class="codebox"><pre class="dg">import oreilly
+diagram shapes style=oreilly
+  row gap=80 align=center
+    box app "App" light w=100 h=52
+    shape db "Orders" w=110 h=84 fill=yellow
+      set ry=14
+      ellipse cx=w/2 cy=h-ry rx=w/2 ry=ry fill=self
+      rect x=0 y=ry w=w h=h-2*ry fill=self sw=0
+      line x1=0 y1=ry x2=0 y2=h-ry
+      line x1=w y1=ry x2=w y2=h-ry
+      ellipse cx=w/2 cy=ry rx=w/2 ry=ry fill=lid
+  app -&gt; db label="INSERT"
+  callout db "Primary store" side=right</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="fig">
+      <figure class="plate">
+        <div class="art"><img src="img/wireframe.svg" alt="A wireframe: a top bar across the page, a tall menu column on the left, two tiles named Visits and Orders, and a large chart area below them." style="--nat:472px" width="472" height="268"></div>
+        <figcaption>Figure 5. A dashboard wireframe.</figcaption>
+      </figure>
+      <div class="text">
+        <h3>Wireframes</h3>
+        <p>With no connectors at all, rows and columns are a layout language. Sizes are exact when you give <code class="i">w</code> and <code class="i">h</code>, and flexible when you do not.</p>
+        <div class="codebox"><pre class="dg">import oreilly
+diagram wireframe style=oreilly
+  col gap=10
+    box top "Top bar" bar w=460 h=36
+    row gap=10
+      box nav "Menu" gray w=100 h=210
+      col gap=10
+        row gap=10
+          box k1 "Visits" light w=170 h=70
+          box k2 "Orders" green w=170 h=70
+        box chart "Chart" white w=350 h=130</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="looks">
+  <div class="wrap">
+    <h2>Styles and themes</h2>
+    <p class="intro">They are two separate settings, and you can combine them. A <strong>style</strong> sets the shape of things: corner radius, line width, padding. A <strong>theme</strong> sets colors and fonts. Both are plain files in the <code class="i">lib/</code> folder, so adding one means adding a file.</p>
+
+    <div class="looks">
+      <figure class="plate"><div class="art"><img src="img/looks-silberschatz.svg" alt="Client, API and Store boxes with square corners and thin lines, joined by arrows." style="--nat:260px" width="260"></div></figure>
+      <figure class="plate"><div class="art"><img src="img/looks-oreilly.svg" alt="The same three boxes with rounded corners and thicker lines." style="--nat:260px" width="260"></div></figure>
+      <figure class="plate"><div class="art"><img src="img/looks-balsamiq.svg" alt="The same three boxes drawn with rough, hand-sketched strokes and handwritten letters." style="--nat:260px" width="260"></div></figure>
+      <figure class="plate"><div class="art"><img src="img/looks-print.svg" alt="The same three boxes in black, white and grays." style="--nat:260px" width="260"></div></figure>
+    </div>
+
+    <p class="intro" style="margin-bottom:1rem">The four figures are the same diagram with a different <code class="i">style=</code> or <code class="i">theme=</code> on the <code class="i">diagram</code> line.</p>
+    <div class="codebox"><pre class="dg">import oreilly
+diagram demo style=oreilly theme=balsamiq caption="theme=balsamiq"
+  row gap=44
+    box a "Client" light
+    box b "API" green
+    box c "Store" yellow
+  a -&gt; b -&gt; c</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+    <p class="intro" style="margin-top:1rem">Pick a theme per diagram with <code class="i">theme=</code> or for a whole run with <code class="i">-T print</code>. Themes can be chained, as in <code class="i">theme=balsamiq,print</code>; the last one wins.</p>
+  </div>
+</section>
+
+<section id="uses">
+  <div class="wrap">
+    <h2>What it is good for</h2>
+    <p class="intro">textod suits diagrams that belong next to text and change with it.</p>
+    <dl class="uses">
+      <div><dt>READMEs and documentation</dt><dd>Keep the diagram as a small text file in the repository. Reviews and diffs show what changed in the picture as a few lines.</dd></div>
+      <div><dt>Course notes and books</dt><dd>Figures with captions and a consistent style, in a format that scales for print and screen.</dd></div>
+      <div><dt>Architecture and design docs</dt><dd>Boxes, groups and labelled connectors for systems, pipelines and state machines.</dd></div>
+      <div><dt>Wireframes and layouts</dt><dd>Rows, columns, grids and absolute positions are enough to sketch a screen or a page.</dd></div>
+      <div><dt>Generated diagrams</dt><dd>A program can write the text and let textod draw it. The input is a small, fixed language, described as the <a href="https://github.com/arce/textod/blob/main/docs/plain-language.md">plain language</a>, so it is a convenient target for other tools.</dd></div>
+      <div><dt>Builds and CI</dt><dd>It reads a file or standard input and writes standard output, so it fits in a Makefile rule, a shell loop or a pipeline.</dd></div>
+    </dl>
+
+    <h2 style="margin-top:3.5rem">What is in the box</h2>
+    <ul class="feat">
+      <li><b>Plain text in, SVG out</b><span>Indentation gives the structure. There is nothing to learn beyond the elements and attributes in the reference.</span></li>
+      <li><b>Layout you control</b><span><code class="i">row</code>, <code class="i">col</code>, <code class="i">grid</code>, <code class="i">layer</code>, <code class="i">group</code> and <code class="i">canvas</code> place things; textod does not move them around on its own.</span></li>
+      <li><b>Connectors with anchors</b><span>Arrows between ids, on a chosen side or at a percentage of it, straight, elbow or curved, with labels, dashes and arrowheads at either end.</span></li>
+      <li><b>Custom shapes</b><span>Draw with rectangles, ellipses, lines, polygons and paths whose numbers are expressions of the size.</span></li>
+      <li><b>Captions and callouts</b><span>Figure captions are part of the picture, and a callout attaches a note to any element.</span></li>
+      <li><b>Styles and themes as files</b><span>Add a <code class="i">.dg</code> style or a <code class="i">.css</code> theme to <code class="i">lib/</code>; no recompiling.</span></li>
+      <li><b>Repeatable output</b><span>The build disables floating-point contraction, so the same input gives identical SVG on ARM and x86.</span></li>
+      <li><b>Errors that say where</b><span>Messages give the file and line, and suggest the nearest name when an attribute or element is misspelled.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="workflow">
+  <div class="wrap">
+    <h2>In your build</h2>
+    <p class="intro">textod is a filter: with no file argument it reads standard input, and it writes the SVG to standard output unless you pass <code class="i">-o</code>. It prints nothing when it works.</p>
+    <div class="steps">
+      <div>
+        <h3>Render a folder of diagrams</h3>
+        <p>One SVG next to each source file.</p>
+        <div class="codebox"><pre class="sh">for f in docs/*.dg; do textod "$f" -o "${f%.dg}.svg"; done</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+      </div>
+      <div>
+        <h3>Let make rebuild what changed</h3>
+        <p>A pattern rule re-renders only the diagrams whose source is newer.</p>
+        <div class="codebox"><pre class="sh">%.svg: %.dg
+	textod $&lt; -o $@</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+      </div>
+      <div>
+        <h3>Draw from another program</h3>
+        <p>Anything that prints the text can be the source.</p>
+        <div class="codebox"><pre class="sh">./make-diagram.sh | textod -T print &gt; figure.svg</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+      </div>
+      <div>
+        <h3>Check it in CI</h3>
+        <p>Build once, then render. This is a GitHub Actions job; adapt the paths to your repository.</p>
+        <div class="codebox"><pre class="sh">- uses: actions/checkout@v4
+- run: make
+- run: for f in docs/*.dg; do build/textod "$f" -o "${f%.dg}.svg"; done</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+      </div>
+    </div>
+    <p class="intro">An SVG file can be shown in a web page with an ordinary <code class="i">&lt;img&gt;</code> tag or Markdown image, which is how this page does it.</p>
+  </div>
+</section>
+
+<section id="language">
+  <div class="wrap">
+    <h2>The language at a glance</h2>
+    <p class="intro">The full description, with every attribute, is in <a href="https://github.com/arce/textod/blob/main/docs/language.md">docs/language.md</a>.</p>
+    <div class="split">
+      <table>
+        <tr><th>Containers</th><td><code>row</code> <code>col</code> <code>grid cols=N</code> <code>group "Title"</code> <code>layer</code> <code>canvas</code></td></tr>
+        <tr><th>Leaves</th><td><code>box</code> <code>text</code> <code>spacer</code> <code>shape</code></td></tr>
+        <tr><th>Inside a shape</th><td><code>rect</code> <code>ellipse</code> <code>line</code> <code>path</code> <code>poly</code> <code>label</code> <code>set</code></td></tr>
+        <tr><th>Annotations</th><td><code>callout</code></td></tr>
+        <tr><th>Size and space</th><td><code>w</code> <code>h</code> <code>minw</code> <code>minh</code> <code>gap</code> <code>pad</code> <code>align</code> <code>flex</code></td></tr>
+        <tr><th>Painting</th><td><code>fill</code> <code>stroke</code> <code>sw</code> <code>dash</code> <code>radius</code> <code>alpha</code></td></tr>
+        <tr><th>Text</th><td><code>size</code> <code>color</code> <code>bold</code> <code>italic</code> <code>mono</code> <code>rotate</code></td></tr>
+        <tr><th>Colors</th><td>Names such as <code>light</code>, <code>green</code>, <code>yellow</code>, <code>red</code>, or <code>#rrggbb</code></td></tr>
+      </table>
+      <div>
+        <p>Connectors name elements by id, optionally with an anchor, and take options:</p>
+        <div class="codebox"><pre class="dg"># between ids
+a -&gt; b
+a -- b                      # no arrowhead
+a -&gt; b -&gt; c                 # a chain
+
+# anchors and routing
+a.bottom -&gt; b.top elbow
+a.bottom@25% -&gt; b.top       # 25% along the side
+
+# options
+a -&gt; b label="Writes" side=right
+a -&gt; b both                 # arrowhead at both ends
+a -&gt; b dash="7 5"           # dashed</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Install and run</h2>
+    <p class="intro">You need <code class="i">make</code> and a C++17 compiler such as g++ or clang++. Nothing else.</p>
+    <div class="split">
+      <div>
+        <div class="codebox"><pre class="sh">git clone https://github.com/arce/textod.git
+cd textod
+make
+make check
+build/textod examples/hello.dg &gt; hello.svg</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
+        <p style="margin-top:1rem"><code class="i">make check</code> renders every example and compares it with the SVG stored beside it. <code class="i">make install</code> copies the program to <code class="i">/usr/local/bin</code> and its styles and themes to <code class="i">/usr/local/share/textod</code>; use <code class="i">PREFIX=</code> to change the place.</p>
+      </div>
+      <table>
+        <tr><th><code>INPUT</code></th><td>A <code>.dg</code> file. Without it, or with <code>-</code>, standard input is read.</td></tr>
+        <tr><th><code>-o OUTPUT</code></th><td>Write to this file instead of standard output. With several diagrams in one file, each goes to <code>OUTPUT-ID.svg</code>.</td></tr>
+        <tr><th><code>-L DIR</code></th><td>Extra folder with styles and themes. Repeatable.</td></tr>
+        <tr><th><code>-T THEME</code></th><td>Theme for diagrams that do not set <code>theme=</code>.</td></tr>
+        <tr><th><code>--libs</code></th><td>List the styles and themes that were found.</td></tr>
+      </table>
+    </div>
+
+    <h2 style="margin-top:3.5rem">Questions</h2>
+    <details class="faq"><summary>Does it place the boxes for me?</summary><p>No. You place them with rows, columns, grids and groups, or with exact positions on a canvas. Tools that choose positions for you are convenient for graphs with many nodes; textod is for figures where the arrangement is part of the message.</p></details>
+    <details class="faq"><summary>Where do styles and themes come from?</summary><p>From files. textod looks in the folder of the input file, in any <code>-L</code> folder, and in <code>lib/</code> or <code>../lib</code> beside the program, then in <code>../share/textod</code>. A file of your own with the same name wins, so you can override a built-in look.</p></details>
+    <details class="faq"><summary>Can I use the SVG in Markdown, slides or print?</summary><p>Yes. The output is a standalone SVG file. Browsers, Markdown renderers and most vector editors open it, and it stays sharp at any size.</p></details>
+    <details class="faq"><summary>What happens with macros, loops and data?</summary><p>textod reads the plain language only. If a file uses something richer, it stops with a message saying so. A separate program can expand a richer language into the plain language and hand it to textod; the plain language document describes exactly what that output must look like.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>textod lives on <a href="https://github.com/arce/textod">GitHub</a>.</span>
+    <span><a href="https://github.com/arce/textod/blob/main/docs/language.md">Language reference</a> &middot; <a href="https://github.com/arce/textod/blob/main/docs/plain-language.md">Plain language</a> &middot; <a href="https://github.com/arce/textod/tree/main/examples">Examples</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var KEYWORDS = new Set("import diagram style group row col grid layer canvas box text spacer shape label rect ellipse path poly line set callout arrow".split(" "));
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function lineHtml(line) {
+    var m = /^(\s*)([A-Za-z_][\w-]*)(.*)$/.exec(line), lead = "", head = "", rest = line;
+    if (m && KEYWORDS.has(m[2])) { lead = m[1]; head = '<span class="k">' + m[2] + "</span>"; rest = m[3]; } else { lead = ""; head = ""; rest = line; }
+    var out = "", re = /("(?:[^"\\]|\\.)*")|(#.*$)|(->|--)|([A-Za-z_][\w-]*)(=)|(\b\d+(?:\.\d+)?%?)/g, last = 0, t;
+    while ((t = re.exec(rest))) {
+      out += esc(rest.slice(last, t.index));
+      if (t[1]) out += '<span class="s">' + esc(t[1]) + "</span>";
+      else if (t[2]) out += '<span class="c">' + esc(t[2]) + "</span>";
+      else if (t[3]) out += '<span class="o">' + esc(t[3]) + "</span>";
+      else if (t[4]) out += '<span class="a">' + esc(t[4]) + "</span>=";
+      else out += '<span class="n">' + t[6] + "</span>";
+      last = re.lastIndex;
+    }
+    out += esc(rest.slice(last));
+    return lead + head + out;
+  }
+  document.querySelectorAll("pre.dg").forEach(function (pre) {
+    pre.setAttribute("data-plain", pre.textContent);
+    pre.innerHTML = pre.textContent.replace(/\n$/, "").split("\n").map(lineHtml).join("\n");
+  });
+  document.querySelectorAll("button.copy").forEach(function (btn) {
+    var pre = btn.parentNode.querySelector("pre");
+    btn.addEventListener("click", function () {
+      var text = pre.getAttribute("data-plain") || pre.textContent;
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () {});
+      else { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); try { document.execCommand("copy"); done(); } catch (e) {} s.removeAllRanges(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

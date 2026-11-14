@@ -1,0 +1,11 @@
+import oreilly
+diagram wireframe style=oreilly
+  col gap=10
+    box top "Top bar" bar w=460 h=36
+    row gap=10
+      box nav "Menu" gray w=100 h=210
+      col gap=10
+        row gap=10
+          box k1 "Visits" light w=170 h=70
+          box k2 "Orders" green w=170 h=70
+        box chart "Chart" white w=350 h=130

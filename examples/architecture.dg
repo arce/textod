@@ -1,0 +1,19 @@
+import oreilly
+diagram architecture style=oreilly
+  row gap=84 align=center
+    col gap=26
+      box web "Web app" light w=110
+      box mobile "Mobile app" light w=110
+    group backend "Backend" pad=18
+      col gap=26
+        box api "API" green w=110
+        box worker "Worker" green w=110
+    col gap=26
+      box cache "Cache" orange w=110
+      box db "Database" yellow w=110
+  web -> api label="HTTPS"
+  mobile -> api
+  api -> cache
+  api -> db label="SQL"
+  api -> worker dash="6 4" label="jobs"
+  worker -> db

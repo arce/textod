@@ -4,6 +4,8 @@ Turns **plain-language** diagram text into SVG.
 
 `textod` is small and has no dependencies besides the C++ standard library.
 
+Website: <https://arce.github.io/textod/> (the page in [docs/index.html](docs/index.html)).
+
 The language it reads is described in [docs/language.md](docs/language.md); the plain-language subset that other programs can generate is fixed in [docs/plain-language.md](docs/plain-language.md).
 
 ## What it understands
@@ -52,7 +54,6 @@ textod [-o OUTPUT] [-L DIR]... [-T THEME] [INPUT]
 - Nothing is printed when it works. Errors go to the standard error as `file: line N: message` (`stdin: line N: message` when the text comes from the standard input), with exit code 1; a wrong command line exits with 2. When the text carries `#line N` directives (written by programs that expand other languages into plain language), the line is the one in the original file.
 - A file with several diagrams writes them one after the other to the standard output; with `-o out.svg` it writes one `out-ID.svg` per diagram.
 - Styles (`import`) are searched in: the input file's directory (the current directory when reading the standard input), the `-L` directories, then the ones that travel with the program: `lib/` and `../lib` next to the executable, and `../share/textod` (where `make install` puts them). Themes are searched in the same places. A file of your own with the same name wins.
-- On Windows the standard input and output are used in binary mode, so pipes do not turn `\n` into `\r\n`.
 
 ## Build
 
@@ -68,3 +69,7 @@ It needs `make` and a C++17 compiler (g++ or clang++). `make` compiles `src/text
 The styles (`lib/styles/*.dg`) and the themes (`lib/themes/*.css`) are files that `textod` reads when it runs, so one can be added or changed without compiling. `textod` looks for them next to the executable (`lib/` or `../lib`), so `build/textod` finds the ones of this repository from any directory. `make install` copies them to `$(DATADIR)/styles` and `$(DATADIR)/themes` (`DATADIR` is `PREFIX/share/textod`), where the installed `textod` finds them (`../share/textod` from its `bin/`), so the installation can be moved as a whole.
 
 The build uses `-ffp-contract=off` so the output is identical on ARM and x86.
+
+## Website
+
+The project page is a static page in `docs/` (`docs/index.html`, with the figures in `docs/img`). To publish it with GitHub Pages: Settings, Pages, "Deploy from a branch", branch `main`, folder `/docs`. The figures are examples rendered by textod: `make site` regenerates them and `make check` keeps them in sync with their sources.

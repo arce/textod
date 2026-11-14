@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="288.93" height="80">
+  <g transform="translate(6,6)">
+  <rect x="0" y="0" width="68.9" height="36" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="34.45" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Client</text>
+  <rect x="112.9" y="0" width="53.79" height="36" rx="8" ry="8" class="c-f-green c-s-text" fill="#d2ecd0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="139.79" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">API</text>
+  <rect x="210.69" y="0" width="66.24" height="36" rx="8" ry="8" class="c-f-yellow c-s-text" fill="#fbeeb0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="243.81" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Store</text>
+  <path d="M 68.9 18 L 103.55 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="112.9,18 101.9,23.06 101.9,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 166.69 18 L 201.34 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="210.69,18 199.69,23.06 199.69,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+</g>
+  <text x="2" y="71.6" font-family="Georgia,&apos;Palatino Linotype&apos;,&apos;Times New Roman&apos;,serif" font-size="16" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50">style=oreilly</text>
+</svg>

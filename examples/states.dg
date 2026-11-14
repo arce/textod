@@ -1,0 +1,14 @@
+import oreilly
+diagram states style=oreilly
+  col gap=60 align=start
+    row gap=100
+      box new "New" light w=80
+      box paid "Paid" green w=80
+      box shipped "Shipped" yellow w=90
+      box done "Delivered" blue w=96
+    box cancelled "Cancelled" red w=100
+  new -> paid label="payment"
+  paid -> shipped label="packed"
+  shipped -> done label="signed for"
+  new.bottom -> cancelled.top label="cancel"
+  paid.bottom -> cancelled.right elbow label="refund" side=below

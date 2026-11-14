@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="546" height="176">
+  <g transform="translate(6,6)">
+  <rect x="0" y="33" width="110" height="36" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="55" y="56.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Web app</text>
+  <rect x="0" y="95" width="110" height="36" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="55" y="118.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Mobile app</text>
+  <rect x="194" y="0" width="146" height="164" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="267" y="33.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" font-weight="bold" class="c-f-text" fill="#2c3e50">Backend</text>
+  <rect x="212" y="48" width="110" height="36" rx="8" ry="8" class="c-f-green c-s-text" fill="#d2ecd0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="267" y="71.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">API</text>
+  <rect x="212" y="110" width="110" height="36" rx="8" ry="8" class="c-f-green c-s-text" fill="#d2ecd0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="267" y="133.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Worker</text>
+  <rect x="424" y="33" width="110" height="36" rx="8" ry="8" class="c-f-orange c-s-text" fill="#f8d9b4" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="479" y="56.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Cache</text>
+  <rect x="424" y="95" width="110" height="36" rx="8" ry="8" class="c-f-yellow c-s-text" fill="#fbeeb0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="479" y="118.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Database</text>
+  <path d="M 110 51 L 202.75 64.64" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="212,66 200.38,69.41 201.85,59.39" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="161" y="47.1" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">HTTPS</text>
+  <path d="M 110 113 L 203.51 69.91" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="212,66 204.13,75.2 199.89,66.01" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 322 66 L 414.75 52.36" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="424,51 413.85,57.61 412.38,47.59" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 322 66 L 415.51 109.09" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="424,113 411.89,112.99 416.13,103.8" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="373" y="78.1" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">SQL</text>
+  <path d="M 267 84 L 267 100.65" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <polygon points="267,110 261.94,99 272.06,99" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="274" y="102.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="start" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">jobs</text>
+  <path d="M 322 128 L 414.75 114.36" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="424,113 413.85,119.61 412.38,109.59" class="c-f-text" fill="#2c3e50" stroke="none"/>
+</g>
+</svg>

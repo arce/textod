@@ -1,0 +1,10 @@
+import oreilly
+diagram pipeline style=oreilly
+  row gap=44
+    box src "Source" light
+    box build "Build" green
+    box test "Test" yellow
+    box pack "Package" orange
+    box ship "Deploy" blue
+  src -> build -> test -> pack -> ship
+  test.bottom -> src.bottom elbow dash="6 4" label="tests fail" side=below

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="557.42" height="101">
+  <g transform="translate(6,6)">
+  <rect x="0" y="0" width="78.69" height="36" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="39.34" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Source</text>
+  <rect x="122.69" y="0" width="63.57" height="36" rx="8" ry="8" class="c-f-green c-s-text" fill="#d2ecd0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="154.47" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Build</text>
+  <rect x="230.26" y="0" width="59.12" height="36" rx="8" ry="8" class="c-f-yellow c-s-text" fill="#fbeeb0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="259.82" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Test</text>
+  <rect x="333.38" y="0" width="90.26" height="36" rx="8" ry="8" class="c-f-orange c-s-text" fill="#f8d9b4" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="378.5" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Package</text>
+  <rect x="467.63" y="0" width="77.79" height="36" rx="8" ry="8" class="c-f-blue c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="506.53" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Deploy</text>
+  <path d="M 78.69 18 L 113.34 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="122.69,18 111.69,23.06 111.69,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 186.26 18 L 220.91 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="230.26,18 219.26,23.06 219.26,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 289.38 18 L 324.03 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="333.38,18 322.38,23.06 322.38,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 423.63 18 L 458.28 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="467.63,18 456.63,23.06 456.63,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 259.82 36 L 259.82 62 L 39.34 62 L 39.34 45.35" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <polygon points="39.34,36 44.4,47 34.28,47" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="149.58" y="84.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">tests fail</text>
+</g>
+</svg>

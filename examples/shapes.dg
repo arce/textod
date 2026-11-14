@@ -1,0 +1,13 @@
+import oreilly
+diagram shapes style=oreilly
+  row gap=80 align=center
+    box app "App" light w=100 h=52
+    shape db "Orders" w=110 h=84 fill=yellow
+      set ry=14
+      ellipse cx=w/2 cy=h-ry rx=w/2 ry=ry fill=self
+      rect x=0 y=ry w=w h=h-2*ry fill=self sw=0
+      line x1=0 y1=ry x2=0 y2=h-ry
+      line x1=w y1=ry x2=w y2=h-ry
+      ellipse cx=w/2 cy=ry rx=w/2 ry=ry fill=lid
+  app -> db label="INSERT"
+  callout db "Primary store" side=right

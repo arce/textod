@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="658" height="162">
+  <g transform="translate(6,15)">
+  <rect x="0" y="0" width="80" height="36" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="40" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">New</text>
+  <rect x="180" y="0" width="80" height="36" rx="8" ry="8" class="c-f-green c-s-text" fill="#d2ecd0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="220" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Paid</text>
+  <rect x="360" y="0" width="90" height="36" rx="8" ry="8" class="c-f-yellow c-s-text" fill="#fbeeb0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="405" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Shipped</text>
+  <rect x="550" y="0" width="96" height="36" rx="8" ry="8" class="c-f-blue c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="598" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Delivered</text>
+  <rect x="0" y="96" width="100" height="36" rx="8" ry="8" class="c-f-red c-s-text" fill="#f3b7b0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="50" y="119.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Cancelled</text>
+  <path d="M 80 18 L 170.65 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="180,18 169,23.06 169,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="130" y="6.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">payment</text>
+  <path d="M 260 18 L 350.65 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="360,18 349,23.06 349,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="310" y="6.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">packed</text>
+  <path d="M 450 18 L 540.65 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="550,18 539,23.06 539,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="500" y="6.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">signed for</text>
+  <path d="M 40 36 L 48.46 86.78" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="50,96 43.2,85.98 53.18,84.32" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="52" y="71.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="start" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">cancel</text>
+  <path d="M 220 36 L 220 114 L 109.35 114" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="100,114 111,108.94 111,119.06" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="160" y="136.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">refund</text>
+</g>
+</svg>

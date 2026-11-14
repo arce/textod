@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="226.02" height="85">
+  <g transform="translate(6,15)">
+  <rect x="0" y="0" width="68.9" height="36" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="34.45" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Client</text>
+  <rect x="138.9" y="0" width="75.12" height="36" rx="8" ry="8" class="c-f-blue c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="176.46" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Server</text>
+  <path d="M 68.9 18 L 129.55 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="138.9,18 127.9,23.06 127.9,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="103.9" y="6.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">request</text>
+  <path d="M 176.46 36 L 176.46 62 L 34.45 62 L 34.45 45.35" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <polygon points="34.45,36 39.51,47 29.39,47" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="105.45" y="50.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">response</text>
+</g>
+</svg>

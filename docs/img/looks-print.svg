@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="288.93" height="80" class="theme-print">
+  <style><![CDATA[
+svg { font-family: var(--c-font, Helvetica, Arial, sans-serif); }
+.c-f-text { fill: var(--c-text, #2c3e50); }
+.c-s-text { stroke: var(--c-text, #2c3e50); }
+.c-f-muted { fill: var(--c-muted, #777777); }
+.c-s-muted { stroke: var(--c-muted, #777777); }
+.c-f-primary { fill: var(--c-primary, #2c81ba); }
+.c-s-primary { stroke: var(--c-primary, #2c81ba); }
+.c-f-success { fill: var(--c-success, #3eaf7c); }
+.c-s-success { stroke: var(--c-success, #3eaf7c); }
+.c-f-warning { fill: var(--c-warning, #e67e22); }
+.c-s-warning { stroke: var(--c-warning, #e67e22); }
+.c-f-primary-soft { fill: var(--c-primary-soft, #eaf3fa); }
+.c-s-primary-soft { stroke: var(--c-primary-soft, #eaf3fa); }
+.c-f-success-soft { fill: var(--c-success-soft, #eef6f2); }
+.c-s-success-soft { stroke: var(--c-success-soft, #eef6f2); }
+.c-f-warning-soft { fill: var(--c-warning-soft, #fdf3ea); }
+.c-s-warning-soft { stroke: var(--c-warning-soft, #fdf3ea); }
+.c-f-border-soft { fill: var(--c-border-soft, #dcdcdc); }
+.c-s-border-soft { stroke: var(--c-border-soft, #dcdcdc); }
+.c-f-placeholder { fill: var(--c-placeholder, #d5dbe1); }
+.c-s-placeholder { stroke: var(--c-placeholder, #d5dbe1); }
+.c-f-bar { fill: var(--c-bar, #eef1f4); }
+.c-s-bar { stroke: var(--c-bar, #eef1f4); }
+.c-f-border { fill: var(--c-border, #b8c2cc); }
+.c-s-border { stroke: var(--c-border, #b8c2cc); }
+.c-f-primary-border { fill: var(--c-primary-border, #9cc3de); }
+.c-s-primary-border { stroke: var(--c-primary-border, #9cc3de); }
+.c-f-surface { fill: var(--c-surface, #ffffff); }
+.c-s-surface { stroke: var(--c-surface, #ffffff); }
+.c-f-canvas { fill: var(--c-canvas, #fafbfc); }
+.c-s-canvas { stroke: var(--c-canvas, #fafbfc); }
+.c-f-light { fill: var(--c-light, #dbe8f5); }
+.c-s-light { stroke: var(--c-light, #dbe8f5); }
+.c-f-blue { fill: var(--c-blue, #dbe8f5); }
+.c-s-blue { stroke: var(--c-blue, #dbe8f5); }
+.c-f-dark { fill: var(--c-dark, #2c81ba); }
+.c-s-dark { stroke: var(--c-dark, #2c81ba); }
+.c-f-white { fill: var(--c-white, #ffffff); }
+.c-s-white { stroke: var(--c-white, #ffffff); }
+.c-f-silver { fill: var(--c-silver, #e8ecef); }
+.c-s-silver { stroke: var(--c-silver, #e8ecef); }
+.c-f-gray { fill: var(--c-gray, #e6e9ec); }
+.c-s-gray { stroke: var(--c-gray, #e6e9ec); }
+.c-f-green { fill: var(--c-green, #d2ecd0); }
+.c-s-green { stroke: var(--c-green, #d2ecd0); }
+.c-f-orange { fill: var(--c-orange, #f8d9b4); }
+.c-s-orange { stroke: var(--c-orange, #f8d9b4); }
+.c-f-yellow { fill: var(--c-yellow, #fbeeb0); }
+.c-s-yellow { stroke: var(--c-yellow, #fbeeb0); }
+.c-f-red { fill: var(--c-red, #f3b7b0); }
+.c-s-red { stroke: var(--c-red, #f3b7b0); }
+.c-f-accent { fill: var(--c-accent, #e67e22); }
+.c-s-accent { stroke: var(--c-accent, #e67e22); }
+.c-f-callout { fill: var(--c-callout, #fefcf3); }
+.c-s-callout { stroke: var(--c-callout, #fefcf3); }
+.c-f-callout-border { fill: var(--c-callout-border, #b8a26b); }
+.c-s-callout-border { stroke: var(--c-callout-border, #b8a26b); }
+.c-f-callout-ink { fill: var(--c-callout-ink, #3d3526); }
+.c-s-callout-ink { stroke: var(--c-callout-ink, #3d3526); }
+
+/* Theme "print": a gray palette for printing (black and white). It only redefines the --c-* variables;
+   it can be combined with another theme (theme=balsamiq,print: the last one wins).
+   Limit: the color of the text over a fill is chosen when drawing, with the color palette. */
+.theme-print {
+  --c-text: #000000;
+  --c-muted: #444444;
+  --c-primary: #000000;
+  --c-success: #333333;
+  --c-warning: #555555;
+  --c-primary-soft: #eeeeee;
+  --c-success-soft: #f4f4f4;
+  --c-warning-soft: #e4e4e4;
+  --c-border-soft: #cccccc;
+  --c-placeholder: #d9d9d9;
+  --c-bar: #ededed;
+  --c-border: #777777;
+  --c-primary-border: #555555;
+  --c-surface: #ffffff;
+  --c-canvas: #ffffff;
+  --c-light: #eeeeee;
+  --c-blue: #eeeeee;
+  --c-dark: #333333;
+  --c-white: #ffffff;
+  --c-silver: #e6e6e6;
+  --c-gray: #dddddd;
+  --c-green: #e4e4e4;
+  --c-orange: #d9d9d9;
+  --c-yellow: #f0f0f0;
+  --c-red: #cccccc;
+  --c-accent: #555555;
+  --c-callout: #f4f4f4;
+  --c-callout-border: #777777;
+  --c-callout-ink: #000000;
+}
+
+  ]]></style>
+  <g transform="translate(6,6)">
+  <rect x="0" y="0" width="68.9" height="36" rx="8" ry="8" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="34.45" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Client</text>
+  <rect x="112.9" y="0" width="53.79" height="36" rx="8" ry="8" class="c-f-green c-s-text" fill="#d2ecd0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="139.79" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">API</text>
+  <rect x="210.69" y="0" width="66.24" height="36" rx="8" ry="8" class="c-f-yellow c-s-text" fill="#fbeeb0" stroke="#2c3e50" stroke-width="1.6"/>
+  <text x="243.81" y="23.6" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle" class="c-f-text" fill="#2c3e50">Store</text>
+  <path d="M 68.9 18 L 103.55 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="112.9,18 101.9,23.06 101.9,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <path d="M 166.69 18 L 201.34 18" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+  <polygon points="210.69,18 199.69,23.06 199.69,12.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+</g>
+  <text x="2" y="71.6" font-family="Georgia,&apos;Palatino Linotype&apos;,&apos;Times New Roman&apos;,serif" font-size="16" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50">theme=print</text>
+</svg>
