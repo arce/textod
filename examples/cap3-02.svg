@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="532" height="329">
+  <g transform="translate(6,6)">
+  <rect x="0" y="0" width="70" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="35" y="21.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">new</text>
+  <rect x="420" y="0" width="100" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="470" y="21.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">terminated</text>
+  <rect x="50" y="100" width="70" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="85" y="121.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">ready</text>
+  <rect x="300" y="100" width="80" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="340" y="121.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">running</text>
+  <rect x="170" y="210" width="80" height="34" class="c-f-light c-s-text" fill="#dbe8f5" stroke="#2c3e50" stroke-width="1.3"/>
+  <text x="210" y="231.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" class="c-f-text" fill="#2c3e50">waiting</text>
+  <path d="M 70 17 L 85 17 L 85 90.65" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="1.3"/>
+  <polygon points="85,100 79.94,89 90.06,89" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="92" y="62.7" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">admitted</text>
+  <path d="M 340 100 L 340 17 L 410.65 17" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="1.3"/>
+  <polygon points="420,17 409,22.06 409,11.94" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="347" y="62.7" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">exit</text>
+  <path d="M 300 110.2 L 129.35 110.2" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="1.3"/>
+  <polygon points="120,110.2 131,105.14 131,115.26" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="210" y="99.9" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" font-style="italic" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">interrupt</text>
+  <path d="M 120 125.5 L 290.65 125.5" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="1.3"/>
+  <polygon points="300,125.5 289,130.56 289,120.44" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="210" y="144.2" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle" font-style="italic" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">scheduler dispatch</text>
+  <path d="M 340 134 L 340 227 L 259.35 227" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="1.3"/>
+  <polygon points="250,227 261,221.94 261,232.06" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="347" y="184.7" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">I/O or event wait</text>
+  <path d="M 170 227 L 85 227 L 85 143.35" class="c-s-text" fill="none" stroke="#2c3e50" stroke-width="1.3"/>
+  <polygon points="85,134 90.06,145 79.94,145" class="c-f-text" fill="#2c3e50" stroke="none"/>
+  <text x="92" y="184.7" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">I/O or event completion</text>
+</g>
+  <text x="2" y="321.7" font-family="Georgia,&apos;Palatino Linotype&apos;,&apos;Times New Roman&apos;,serif" font-size="12" text-anchor="start" font-style="italic" class="c-f-text" fill="#2c3e50">Process states.</text>
+</svg>

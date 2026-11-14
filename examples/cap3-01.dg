@@ -1,0 +1,20 @@
+import silberschatz
+diagram cap3-01 style=silberschatz size=12 caption="Process in memory."
+  row gap=10 align=start
+    col gap=0 align=start
+      text "max"
+      spacer h=222
+      text "0"
+    col gap=0 w=150
+      box stack "stack" light h=34
+      canvas gp w=150 h=100
+        box bg white w=150 h=100 at=0,0
+        spacer a1 at=75,0 w=1 h=1
+        spacer a2 at=75,40 w=1 h=1
+        spacer b1 at=75,100 w=1 h=1
+        spacer b2 at=75,60 w=1 h=1
+        a1 -> a2
+        b1 -> b2
+      box "heap" light h=34
+      box "data" light h=34
+      box "text" light h=34

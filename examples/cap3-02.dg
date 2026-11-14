@@ -1,0 +1,22 @@
+import silberschatz
+diagram cap3-02 style=silberschatz size=12 caption="Process states." w=520 h=290
+  col gap=0 align=start
+    row gap=350 align=start
+      box nw "new" light w=70 h=34
+      box tm "terminated" light w=100 h=34
+    spacer w=0 h=66
+    row gap=0 align=start
+      spacer w=50 h=0
+      row gap=180 align=start
+        box rd "ready" light w=70 h=34
+        box rn "running" light w=80 h=34
+    spacer w=0 h=76
+    row gap=0 align=start
+      spacer w=170 h=0
+      box wt "waiting" light w=80 h=34
+  nw.right -> rd.top elbow label="admitted"
+  rn.top -> tm.left elbow label="exit"
+  rn.left@30% -> rd.right@30% label="interrupt" side=above
+  rd.right@75% -> rn.left@75% label="scheduler dispatch" side=below
+  rn.bottom -> wt.right elbow label="I/O or event wait"
+  wt.left -> rd.bottom elbow label="I/O or event completion"

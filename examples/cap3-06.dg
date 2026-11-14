@@ -1,0 +1,54 @@
+import silberschatz
+diagram cap3-06 (
+    style=silberschatz size=11
+    caption="Addition of medium-term scheduling to the queueing diagram."
+    w=540 h=230
+)
+  col gap=0 align=start
+    row gap=0 align=start
+      spacer w=100 h=0
+      row gap=0 align=start
+        text "medium-term scheduling" size=11
+    spacer w=0 h=10.25
+    row gap=0 align=start
+      col gap=0 align=start
+        spacer w=0 h=12
+        text "swap in" size=11
+      spacer w=72.71 h=0
+      box pe "partially executed\nswapped-out process" light w=210 h=48
+      spacer w=100 h=0
+      col gap=0 align=start
+        spacer w=0 h=12
+        text "swap out" size=11
+    spacer w=0 h=28
+    row gap=0 align=start
+      col gap=0 align=start
+        spacer w=0 h=17
+        spacer in w=1 h=1
+      spacer w=109 h=0
+      box rq "ready queue" light w=120 h=34
+      spacer w=100 h=0
+      box cpu "CPU" light w=44 h=34 sw=2.4
+      spacer w=86 h=0
+      col gap=0 align=start
+        spacer w=0 h=17
+        spacer en w=1 h=1
+      spacer w=9 h=0
+      col gap=0 align=start
+        spacer w=0 h=8
+        text "end" size=11
+    spacer w=0 h=26
+    row gap=0 align=start
+      spacer w=110 h=0
+      row gap=76 align=start
+        col gap=0 align=start
+          spacer w=0 h=6
+          box io "I/O" light w=44 h=34 sw=2.4
+        box iow "I/O waiting\nqueues" light w=130 h=44
+  in -> rq.left
+  rq.right -> cpu.left
+  cpu.right -> en
+  cpu.right@50% -> pe.right elbow margin=24
+  cpu.right -> iow.right elbow margin=24
+  iow.left -> io.right
+  io.left -> pe.left elbow margin=20

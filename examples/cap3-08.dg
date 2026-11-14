@@ -1,0 +1,22 @@
+import silberschatz
+diagram cap3-08 (
+    style=silberschatz size=11
+    caption="Process creation with fork(), exec(), exit() and wait()." w=560
+    h=210
+)
+  text "parent" at=0,66 size=11
+  box fk "pid = fork()" light at=70,52 w=130 h=36
+  text "parent (pid>0)" at=150,0 size=11
+  box wt "wait()" light at=330,10 w=110 h=36
+  text "parent\nresumes" at=480,12 size=11
+  text "child (pid=0)" at=40,130 size=11
+  box ex "exec()" light at=180,110 w=110 h=36
+  box xt "exit()" light at=330,110 w=110 h=36
+  spacer p0 at=30,70 w=1 h=1
+  p0 -> fk.left
+  fk.top -> wt.left elbow
+  fk.bottom -> ex.left elbow
+  ex.right -> xt.left
+  xt.top -> wt.bottom
+  spacer out at=470,28 w=1 h=1
+  wt.right -> out

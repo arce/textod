@@ -2,18 +2,16 @@
 
 Turns **plain-language** diagram text into SVG.
 
-`textod` has no macro expander and no charts, so it is small and has no dependencies besides the C++ standard library. Use it alone for hand-written diagrams, or as the last step of a pipeline: any program that writes the plain language can feed it, for example `some-expander file.dg | textod - -o out.svg`.
+`textod` has no macro expander and no charts, so it is small and has no dependencies besides the C++ standard library.
+
+The language it reads is described in [docs/language.md](docs/language.md); the plain-language subset that other programs can generate is fixed in [docs/plain-language.md](docs/plain-language.md).
 
 ## What it understands
 
-- Elements: `box text spacer shape label rect row col grid canvas group line arrow callout ellipse path poly set`, plus `style` and `diagram`.
+- Elements: `box text spacer shape label rect row col grid layer canvas group line arrow callout ellipse path poly set`, plus `style` and `diagram`.
 - Layout (rows, columns, grids, absolute `at=x,y`), sizes, fills, strokes, dashes, captions.
 - Connectors: `a -> b`, `a.bottom -> b.top elbow`, chains, labels, `both`, `dash`, callouts.
-- Themes (`theme=` or `-T`), and `import` of libraries that contain only `style` blocks (for example `import styles`).
-
-It does **not** understand `def`, `data`, `repeat`, `if`, `content`, `include`, the modules (`graph`, `tree`, `sequence`, `datatable`, `form`) or `chart`. If it meets one, it says that the input must be plain language.
-
-The full language reference is `docs/DSL.md` (in Spanish); the plain language itself is described in `docs/plain-language.md`.
+- Styles (`style=`: shape and stroke defaults, one `.dg` file per style: `import silberschatz`) and themes (`theme=` or `-T`: colors and fonts, CSS).
 
 ## Example
 
@@ -27,35 +25,46 @@ diagram hello
   client -> server label="request"
 ```
 
+`textod` works like a Unix filter: it writes the SVG to the standard output.
+
 ```
-textod hello.dg              # writes hello.svg next to the input
-textod hello.dg -o out.svg
-textod - -o out.svg < hello.dg
+textod hello.dg > hello.svg
+textod hello.dg -o hello.svg
+cat hello.dg | textod > hello.svg
 ```
 
 ## Usage
 
 ```
-textod INPUT.dg [-o OUTPUT.svg] [-L DIR]... [-T THEME]
+textod [-o OUTPUT] [-L DIR]... [-T THEME] [INPUT]
 ```
 
 | option | meaning |
-|---|---|
-| `INPUT` | a `.dg` file, or `-` to read standard input |
-| `-o OUTPUT` | output file; `-` for standard output (default: `INPUT.svg`, or standard output when reading `-`) |
-| `-L DIR` | extra directory with libraries for `import`; repeatable |
+| --- | --- |
+| `INPUT` | a `.dg` file; without it (or with `-`) the standard input is read, so `textod` works in a pipe |
+| `-o OUTPUT` | write to this file instead of the standard output (`-o -` is the standard output) |
+| `-L DIR` | extra directory with styles and themes (they are looked for in its subdirectories too, so it may be a `lib` directory); repeatable |
 | `-T THEME` | CSS theme (`THEME.css`) for diagrams that do not set `theme=` |
-| `--libs` | list the libraries built into the program |
+| `--libs` | list the styles and themes that are found in those places |
 | `-h`, `--help` / `--version` | help / version |
 
-- A file with several diagrams writes one `OUTPUT-ID.svg` per diagram.
-- Libraries are searched in: the input file's directory, the `-L` directories, then the built-in ones. A library of your own with the same name wins.
-- Errors go to standard error as `file: line N: message`, with exit code 1. When the text carries `#line N` directives (written by programs that expand other languages into plain language), the line is the one in the original file.
+- Options take their value separated (`-o out.svg`) or attached (`-oout.svg`); `--` ends the options.
+- Nothing is printed when it works. Errors go to the standard error as `file: line N: message` (`stdin: line N: message` when the text comes from the standard input), with exit code 1; a wrong command line exits with 2. When the text carries `#line N` directives (written by programs that expand other languages into plain language), the line is the one in the original file.
+- A file with several diagrams writes them one after the other to the standard output; with `-o out.svg` it writes one `out-ID.svg` per diagram.
+- Styles (`import`) are searched in: the input file's directory (the current directory when reading the standard input), the `-L` directories, then the ones that travel with the program: `lib/` and `../lib` next to the executable, and `../share/textod` (where `make install` puts them). Themes are searched in the same places. A file of your own with the same name wins.
+- On Windows the standard input and output are used in binary mode, so pipes do not turn `\n` into `\r\n`.
 
 ## Build
 
 ```
-make
+make            # builds build/textod
+make check      # renders examples/*.dg and compares them with the .svg next to them
+make install    # /usr/local/bin/textod and the styles and themes in /usr/local/share/textod (PREFIX=... to change it)
+make clean
 ```
 
-Only the `styles` and `temas` libraries are embedded. Requires a C++17 compiler and Python 3 (to embed the libraries). The build uses `-ffp-contract=off` so the output is identical on ARM and x86.
+It needs `make` and a C++17 compiler (g++ or clang++); nothing else (no Python, no other tools). `make` compiles `src/textod.cpp` (the rest of `src/` are headers) into a single executable.
+
+The styles (`lib/styles/*.dg`) and the themes (`lib/themes/*.css`) are not embedded: they are files that `textod` reads when it runs, so one can be added or changed without compiling. `textod` looks for them next to the executable (`lib/` or `../lib`), so `build/textod` finds the ones of this repository from any directory. `make install` copies them to `$(DATADIR)/styles` and `$(DATADIR)/themes` (`DATADIR` is `PREFIX/share/textod`), where the installed `textod` finds them (`../share/textod` from its `bin/`), so the installation can be moved as a whole.
+
+The build uses `-ffp-contract=off` so the output is identical on ARM and x86.

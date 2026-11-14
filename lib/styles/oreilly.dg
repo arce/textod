@@ -1,0 +1,3 @@
+style oreilly
+  box radius=8 sw=1.6 padx=14 pady=8
+  arrow sw=2.5

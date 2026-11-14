@@ -4,7 +4,7 @@ The plain language is the small text format that `textod` draws. Programs that e
 
 ## Vocabulary
 
-- Elements: `box text spacer shape label rect row col grid canvas group line arrow callout ellipse path poly set`.
+- Elements: `box text spacer shape label rect row col grid layer canvas group line arrow callout ellipse path poly set`.
 - `style` blocks, `diagram`, and connectors such as `a.bottom -> b.top`.
 - Nothing else: no `def`, `data`, `repeat`, `if`, `content`, `include`, and no modules (`graph`, `tree`, `sequence`, `datatable`, `form`) or `chart`.
 

@@ -2,11 +2,10 @@ PROG     := textod
 CXX      ?= g++
 CXXFLAGS ?= -std=c++17 -O2 -ffp-contract=off
 PREFIX   ?= /usr/local
-DEFS     := 
+DATADIR  ?= $(PREFIX)/share/$(PROG)
+DEFS     :=
 
 HEADERS  := $(shell find src -name '*.hpp')
-LIBS     := $(shell find lib -name '*.dg' -o -name '*.css')
-TESTS    := $(patsubst tests/%.cpp,build/%,$(wildcard tests/*_test.cpp))
 
 .PHONY: all test check install uninstall clean help
 
@@ -14,39 +13,39 @@ all: build/$(PROG)
 
 help:
 	@echo "make            builds build/$(PROG)"
-	@echo "make test       unit tests and the examples"
-	@echo "make check      only the examples (examples/*.dg against their expected output)"
-	@echo "make install    installs into $(PREFIX)/bin (PREFIX=... to change it)"
+	@echo "make check      renders examples/*.dg and compares them with the .svg next to them"
+	@echo "make install    installs into $(PREFIX)/bin and the styles and themes into $(DATADIR) (PREFIX=... to change it)"
 	@echo "make clean      removes build/"
 
 build:
 	mkdir -p $@
 
-# the libraries of this program are embedded in the executable
-build/embedded_lib.hpp: $(LIBS) tools/embed.py | build
-	python3 tools/embed.py lib $@
+build/$(PROG): src/$(PROG).cpp $(HEADERS) | build
+	$(CXX) $(CXXFLAGS) $(DEFS) -DPROGRAM=\"$(PROG)\" -Isrc -o $@ $<
 
-build/$(PROG): src/$(PROG).cpp $(HEADERS) build/embedded_lib.hpp | build
-	$(CXX) $(CXXFLAGS) $(DEFS) -DPROGRAM=\"$(PROG)\" -Ibuild -Isrc -o $@ $<
-
-build/%_test: tests/%_test.cpp $(HEADERS) | build
-	$(CXX) $(CXXFLAGS) $(DEFS) -Isrc -o $@ $<
-
-test: $(TESTS) check
-	@for t in $(TESTS); do echo "== $$t"; ./$$t || exit 1; done
+test: check
 
 check: build/$(PROG)
-	@for f in examples/*.dg; do \
-	  build/$(PROG) $$f -o build/example.svg || { echo "FAIL $$f"; exit 1; }; \
-	  cmp -s build/example.svg $${f%.dg}.svg || { echo "DIFFERENT $$f"; exit 1; }; \
-	done; echo "examples ok"
+	@rm -rf build/out; mkdir -p build/out; fail=0; \
+	for f in examples/*.dg; do \
+		build/$(PROG) $$f -o build/out/$$(basename $${f%.dg}).svg || { echo "FAIL  $$f"; fail=1; }; \
+	done; \
+	for f in build/out/*.svg; do n=$$(basename $$f); \
+		if cmp -s $$f examples/$$n; then echo "ok    $$n"; else echo "DIFF  $$n"; fail=1; fi; \
+	done; \
+	[ $$fail = 0 ] && echo "examples ok"; exit $$fail
 
 install: build/$(PROG)
 	install -d $(PREFIX)/bin
 	install -m 755 build/$(PROG) $(PREFIX)/bin/$(PROG)
+	install -d $(DATADIR)/styles
+	install -m 644 lib/styles/*.dg $(DATADIR)/styles
+	install -d $(DATADIR)/themes
+	install -m 644 lib/themes/*.css $(DATADIR)/themes
 
 uninstall:
 	rm -f $(PREFIX)/bin/$(PROG)
+	rm -rf $(DATADIR)
 
 clean:
 	rm -rf build

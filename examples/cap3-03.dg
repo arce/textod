@@ -1,4 +1,4 @@
-import styles
+import silberschatz
 diagram cap3-03 (
     style=silberschatz size=12 caption="Process control block (PCB)."
 )

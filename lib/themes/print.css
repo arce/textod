@@ -1,6 +1,6 @@
-/* Tema "print": paleta en grises para imprimir (blanco y negro). Redefine solo las variables --c-*;
-   se puede combinar con otro tema (theme=balsamiq,print: el último gana).
-   Límite: el color del texto sobre un relleno se elige al dibujar con la paleta en color. */
+/* Theme "print": a gray palette for printing (black and white). It only redefines the --c-* variables;
+   it can be combined with another theme (theme=balsamiq,print: the last one wins).
+   Limit: the color of the text over a fill is chosen when drawing, with the color palette. */
 .theme-print {
   --c-text: #000000;
   --c-muted: #444444;
