@@ -37,7 +37,7 @@ check: build/$(PROG)
 	[ $$fail = 0 ] && echo "examples ok"; exit $$fail
 
 # the images of the site (docs/index.html) are examples rendered by textod
-SITE_IMAGES := hello pipeline architecture states shapes wireframe looks-boxed looks-rounded looks-flat looks-shadow looks-rshadow looks-oval themes-github-light themes-one-light themes-gruvbox-light themes-catppuccin-latte themes-tomorrow themes-ayu-light themes-nord-light themes-solarized-light themes-monokai themes-solarized-dark themes-zenburn
+SITE_IMAGES := hello pipeline architecture states shapes wireframe looks-boxed looks-rounded looks-flat looks-shadow looks-rshadow looks-oval themes-github-light themes-nord-light themes-solarized-light themes-monokai
 
 site: check
 	mkdir -p docs/img

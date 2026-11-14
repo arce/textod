@@ -373,20 +373,13 @@ diagram wireframe style=rounded
     <p class="intro" style="margin-bottom:1rem">The six figures are the same diagram with a different <code class="i">style=</code> on the <code class="i">diagram</code> line. <code class="i">flat</code>, <code class="i">shadow</code>, <code class="i">rshadow</code> and <code class="i">oval</code> are inspired by FLTK's box types.</p>
 
     <h3>Themes</h3>
-    <div class="looks cols3">
+    <div class="looks">
       <figure class="plate"><div class="art"><img src="img/themes-github-light.svg" alt="The three boxes on a white and light gray background." style="--nat:260px" width="260"></div></figure>
-      <figure class="plate"><div class="art"><img src="img/themes-one-light.svg" alt="The three boxes on a off-white background." style="--nat:260px" width="260"></div></figure>
-      <figure class="plate"><div class="art"><img src="img/themes-gruvbox-light.svg" alt="The three boxes on a warm cream background." style="--nat:260px" width="260"></div></figure>
-      <figure class="plate"><div class="art"><img src="img/themes-catppuccin-latte.svg" alt="The three boxes on a cool pastel background." style="--nat:260px" width="260"></div></figure>
-      <figure class="plate"><div class="art"><img src="img/themes-tomorrow.svg" alt="The three boxes on a light gray background." style="--nat:260px" width="260"></div></figure>
-      <figure class="plate"><div class="art"><img src="img/themes-ayu-light.svg" alt="The three boxes on a bright off-white background." style="--nat:260px" width="260"></div></figure>
       <figure class="plate"><div class="art"><img src="img/themes-nord-light.svg" alt="The three boxes on a pale blue-gray background." style="--nat:260px" width="260"></div></figure>
       <figure class="plate"><div class="art"><img src="img/themes-solarized-light.svg" alt="The three boxes on a cream background." style="--nat:260px" width="260"></div></figure>
       <figure class="plate"><div class="art"><img src="img/themes-monokai.svg" alt="The three boxes on a dark olive background." style="--nat:260px" width="260"></div></figure>
-      <figure class="plate"><div class="art"><img src="img/themes-solarized-dark.svg" alt="The three boxes on a dark teal background." style="--nat:260px" width="260"></div></figure>
-      <figure class="plate"><div class="art"><img src="img/themes-zenburn.svg" alt="The three boxes on a soft dark gray background." style="--nat:260px" width="260"></div></figure>
     </div>
-    <p class="intro" style="margin-bottom:1rem">Eight light themes (GitHub Light, One Light, Gruvbox Light, Catppuccin Latte, Tomorrow, Ayu Light, Nord Light and Solarized Light) and three dark ones (Monokai, Solarized Dark and Zenburn), each drawn over its own background.</p>
+    <p class="intro" style="margin-bottom:1rem">Three light themes (GitHub Light, Nord Light and Solarized Light) and one dark (Monokai), each drawn over its own background. Adding another is adding a CSS file to <code class="i">lib/themes/</code>.</p>
     <div class="codebox"><pre class="dg">import rounded
 diagram demo style=rounded theme=github-light caption="theme=github-light"
   row gap=44
@@ -395,7 +388,7 @@ diagram demo style=rounded theme=github-light caption="theme=github-light"
     box c "Store" yellow
   a -&gt; b label="HTTP"
   b -&gt; c</pre><button class="copy" type="button" data-copy-from="previous">Copy</button></div>
-    <p class="intro" style="margin-top:1rem">Pick a theme per diagram with <code class="i">theme=</code> or for a whole run with <code class="i">-T github-light</code>. Themes can be chained, as in <code class="i">theme=github-light,gruvbox-light</code>; the last one wins. Styles can be chained too (<code class="i">style=shadow,rounded</code>: for each setting the last one wins).</p>
+    <p class="intro" style="margin-top:1rem">Pick a theme per diagram with <code class="i">theme=</code> or for a whole run with <code class="i">-T github-light</code>. Themes can be chained, as in <code class="i">theme=github-light,nord-light</code>; the last one wins. Styles can be chained too (<code class="i">style=shadow,rounded</code>: for each setting the last one wins).</p>
   </div>
 </section>
 
