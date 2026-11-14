@@ -4,7 +4,7 @@ Turns **plain-language** diagram text into SVG.
 
 `textod` is small and has no dependencies besides the C++ standard library.
 
-Website: <https://arce.github.io/textod/> (the page in [docs/index.html](docs/index.html)).
+Website: [https://arce.github.io/textod/](https://arce.github.io/textod/) (the page in [docs/index.html](docs/index.html)).
 
 The language it reads is described in [docs/language.md](docs/language.md); the plain-language subset that other programs can generate is fixed in [docs/plain-language.md](docs/plain-language.md).
 
@@ -69,7 +69,3 @@ It needs `make` and a C++17 compiler (g++ or clang++). `make` compiles `src/text
 The styles (`lib/styles/*.dg`) and the themes (`lib/themes/*.css`) are files that `textod` reads when it runs, so one can be added or changed without compiling. `textod` looks for them next to the executable (`lib/` or `../lib`), so `build/textod` finds the ones of this repository from any directory. `make install` copies them to `$(DATADIR)/styles` and `$(DATADIR)/themes` (`DATADIR` is `PREFIX/share/textod`), where the installed `textod` finds them (`../share/textod` from its `bin/`), so the installation can be moved as a whole.
 
 The build uses `-ffp-contract=off` so the output is identical on ARM and x86.
-
-## Website
-
-The project page is a static page in `docs/` (`docs/index.html`, with the figures in `docs/img`). To publish it with GitHub Pages: Settings, Pages, "Deploy from a branch", branch `main`, folder `/docs`. The figures are examples rendered by textod: `make site` regenerates them and `make check` keeps them in sync with their sources.
